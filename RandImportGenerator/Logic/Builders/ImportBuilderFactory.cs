@@ -1,16 +1,8 @@
 ﻿using RandImportGenerator.Logic.FileWriters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RandImportGenerator.Logic
+namespace RandImportGenerator.Logic.Builders
 {
-    public interface IImportBuilderFactory
-    {
-        ImportBuilderBase GetImportBuilder(FileType type);
-    }
     public class ImportBuilderFactory : IImportBuilderFactory
     {
         private IFileWriter fileWriter;

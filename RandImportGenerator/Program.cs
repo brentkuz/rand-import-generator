@@ -1,12 +1,9 @@
-﻿using RandImportGenerator.Logic;
-using RandImportGenerator.Objects.ImportDefinitions;
+﻿using RandImportGenerator.Logic.Builders;
+using RandImportGenerator.Objects.ImportDefinitions.Columns;
 using RandImportGenerator.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Unity;
 
 
@@ -34,7 +31,7 @@ namespace RandImportGenerator
                 new RandomizedColumn("Randomized1")
                 {
                     ColumnOrder = 2,
-                    RandomizationOptions = new string[] {"opt1", "opt2", "opt3"}
+                    RandomizationOptions = new string[] {"opt,1", "opt2", "opt3"}
                 },
                 new DependentColumn("Dependent1")
                 {
@@ -54,6 +51,7 @@ namespace RandImportGenerator
                 }
             };
             var delimiter = ',';
+            var quote = '"';
             var rowCount = 10000;
             /******************************************************************/
 
@@ -69,6 +67,9 @@ namespace RandImportGenerator
 
             if (bldr is DelimitedImportBuilder)
                 (bldr as DelimitedImportBuilder).SetDelimiter(delimiter);
+      
+            if (bldr is CSVImportBuilder)
+                (bldr as CSVImportBuilder).SetQuoteCharacter(quote);
 
             bldr.SetRowCount(rowCount);
 
@@ -89,7 +90,7 @@ namespace RandImportGenerator
         /*** Delegate Config ****************************************************************/
         private static Dictionary<string, string> dep1Map = new Dictionary<string, string>()
         {
-            { "opt1", "Option 1" },
+            { "opt,1", "Option 1" },
             { "opt2", "Option 2" },
             { "opt3", "Option 3" },
         };

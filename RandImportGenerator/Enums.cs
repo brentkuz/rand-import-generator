@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RandImportGenerator
+﻿namespace RandImportGenerator
 {
     public enum FileType
     {
@@ -18,4 +12,5 @@ namespace RandImportGenerator
         Static = 4,
         Computed = 5
     }
+   
 }
