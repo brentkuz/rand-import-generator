@@ -24,8 +24,15 @@ namespace RandImportGenerator.Logic.Builders
             this.fileWriter = fileWriter;
         }
 
+        public ImportDefinition Definition { get { return definition; } }
+
+        public string OutputPath { get { return outputPath; } }
+
         public virtual void SetOutputPath(string path)
         {
+            if (!fileWriter.DirectoryExists(path))
+                throw new SystemException(string.Format("The path {0} does not exist.", path));
+
             //check for correct file extension
             var parts = path.Split('\\');
             var filename = parts[parts.Length - 1];
@@ -39,7 +46,10 @@ namespace RandImportGenerator.Logic.Builders
 
         public virtual void AddColumn(ColumnDefinitionBase col)
         {
-            if (col is AutoIncrementedColumn)
+            if (definition.Columns.Any(x => x.Name == col.Name))
+                throw new Exception(string.Format("A column with the name {0} already exists in the column collection", col.Name));
+
+            if (col is AutoIncrementedColumn && !ColumnSequenceExists(col.Name))
                 columnSequence.Add(col.Name, 0);
 
             if(col is RandomizedColumn)
@@ -56,6 +66,16 @@ namespace RandImportGenerator.Logic.Builders
             if (count < 0)
                 throw new ArgumentException("Row Count must be a positive number.");
             rowCount = count;
+        }
+
+        public virtual bool ColumnSequenceExists(string colName)
+        {
+            return columnSequence.Keys.Contains(colName);
+        }
+
+        public virtual bool RandOptionsExist(string colName)
+        {
+            return randOptions.Keys.Contains(colName);
         }
 
         public abstract void BuildAndSaveFile();
@@ -81,7 +101,17 @@ namespace RandImportGenerator.Logic.Builders
 
         protected virtual string CalculateDependent(DependentColumn col, Dictionary<string, object> cache, object val)
         {
-            var t = col.Calculator(val);
+            string t;
+
+            if (col.Calculator != null)
+            {
+                t = col.Calculator(val);
+            }
+            else
+            {
+                t = col.Map[val];
+            }
+
             cache.Add(col.Name, t);
             return t;
         }

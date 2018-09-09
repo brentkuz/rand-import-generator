@@ -37,6 +37,18 @@ namespace RandImportGenerator
                 {
                     ColumnOrder = 3,
                     DependsOn = "Randomized1",
+                    //Calculator = Dependent1Calc
+                    Map = new Dictionary<object, string>()
+                            {
+                                { "opt,1", "Option 1" },
+                                { "opt2", "Option 2" },
+                                { "opt3", "Option 3" },
+                            }
+                },
+                new DependentColumn("Dependent2")
+                {
+                    ColumnOrder = 3,
+                    DependsOn = "Randomized1",
                     Calculator = Dependent1Calc
                 },
                 new StaticColumn("Static1")

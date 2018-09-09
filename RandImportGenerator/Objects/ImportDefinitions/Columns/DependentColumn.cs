@@ -1,4 +1,6 @@
-﻿namespace RandImportGenerator.Objects.ImportDefinitions.Columns
+﻿using System.Collections.Generic;
+
+namespace RandImportGenerator.Objects.ImportDefinitions.Columns
 {
     public class DependentColumn : ColumnDefinitionBase
     {
@@ -9,6 +11,8 @@
         public delegate string Calculate(object value);
 
         public Calculate Calculator { get; set; }
+
+        public Dictionary<object, string> Map { get; set; }
 
         public string DependsOn { get; set; }
 
