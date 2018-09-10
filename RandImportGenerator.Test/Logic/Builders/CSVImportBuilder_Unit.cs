@@ -9,6 +9,8 @@ using RandImportGenerator.Test.Fakes;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using RandImportGenerator.Utility.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace RandImportGenerator.Test.Logic.Builders
 {
@@ -31,7 +33,8 @@ namespace RandImportGenerator.Test.Logic.Builders
 
             var fileWriterMock = new Mock<IFileWriter>();
             fileWriterMock.Setup(f => f.DirectoryExists(It.IsAny<string>())).Returns(true);
-            var bldr = new CSVImportBuilder(fileWriterMock.Object);
+            var validationMock = new Mock<IValidationHelper>();
+            var bldr = new CSVImportBuilder(fileWriterMock.Object, validationMock.Object);
 
             bldr.SetOutputPath(path);
         }
@@ -44,7 +47,8 @@ namespace RandImportGenerator.Test.Logic.Builders
 
             var fileWriterMock = new Mock<IFileWriter>();
             fileWriterMock.Setup(f => f.DirectoryExists(It.IsAny<string>())).Returns(false);
-            var bldr = new CSVImportBuilder(fileWriterMock.Object);
+            var validationMock = new Mock<IValidationHelper>();
+            var bldr = new CSVImportBuilder(fileWriterMock.Object, validationMock.Object);
 
             bldr.SetOutputPath(path);
         }
@@ -56,7 +60,8 @@ namespace RandImportGenerator.Test.Logic.Builders
 
             var fileWriterMock = new Mock<IFileWriter>();
             fileWriterMock.Setup(f => f.DirectoryExists(It.IsAny<string>())).Returns(true);
-            var bldr = new CSVImportBuilder(fileWriterMock.Object);
+            var validationMock = new Mock<IValidationHelper>();
+            var bldr = new CSVImportBuilder(fileWriterMock.Object, validationMock.Object);
 
             bldr.SetOutputPath(path);
 
@@ -126,7 +131,7 @@ namespace RandImportGenerator.Test.Logic.Builders
 
             bldr.SetRowCount(100);
 
-            Assert.AreEqual(100, bldr.RowCount);
+            Assert.AreEqual(100, bldr.Definition.RowCount);
         }
 
         #endregion
@@ -173,10 +178,37 @@ namespace RandImportGenerator.Test.Logic.Builders
         }
 
         [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void BuildAndSaveFile_IncompleteModelValidationError()
+        {
+            var fileWriter = new TestFileWriter();
+            var validationMock = new Mock<IValidationHelper>();
+            var res = new List<ValidationResult>() as ICollection<ValidationResult>;
+            validationMock.Setup(x => x.IsModelValid(It.IsAny<object>(), out res)).Returns(false);
+            var bldr = new CSVImportBuilder(fileWriter, validationMock.Object);
+            var start = 1;
+            var increment = 2;
+
+
+            bldr.SetOutputPath("C:\test\test.csv");
+            bldr.AddColumn(new AutoIncrementedColumn("col1")
+            {
+                ColumnOrder = 1,
+                StartingSequenceNumber = start,
+                IncrementValue = increment
+            });
+
+            bldr.BuildAndSaveFile();
+        }
+
+        [TestMethod]
         public void BuildAndSaveFile_AutoIncrementIsCorrect()
         {
             var fileWriter = new TestFileWriter();
-            var bldr = new CSVImportBuilder(fileWriter);
+            var validationMock = new Mock<IValidationHelper>();
+            var res = new List<ValidationResult>() as ICollection<ValidationResult>;
+            validationMock.Setup(x => x.IsModelValid(It.IsAny<object>(), out res)).Returns(true);
+            var bldr = new CSVImportBuilder(fileWriter, validationMock.Object);
             var start = 1;
             var increment = 2;
             
@@ -213,7 +245,10 @@ namespace RandImportGenerator.Test.Logic.Builders
         public void BuildAndSaveFile_RandomizedIsCorrect()
         {
             var fileWriter = new TestFileWriter();
-            var bldr = new CSVImportBuilder(fileWriter);
+            var validationMock = new Mock<IValidationHelper>();
+            var res = new List<ValidationResult>() as ICollection<ValidationResult>;
+            validationMock.Setup(x => x.IsModelValid(It.IsAny<object>(), out res)).Returns(true);
+            var bldr = new CSVImportBuilder(fileWriter, validationMock.Object);
 
             var opts = new string[] { "opt1", "opt2", "opt3" };
 
@@ -248,7 +283,10 @@ namespace RandImportGenerator.Test.Logic.Builders
         public void BuildAndSaveFile_DependentUsingMapIsCorrect()
         {
             var fileWriter = new TestFileWriter();
-            var bldr = new CSVImportBuilder(fileWriter);
+            var validationMock = new Mock<IValidationHelper>();
+            var res = new List<ValidationResult>() as ICollection<ValidationResult>;
+            validationMock.Setup(x => x.IsModelValid(It.IsAny<object>(), out res)).Returns(true);
+            var bldr = new CSVImportBuilder(fileWriter, validationMock.Object);
 
             var delimiter = ',';
 
@@ -291,7 +329,11 @@ namespace RandImportGenerator.Test.Logic.Builders
         public void BuildAndSaveFile_DependentUsingCalculatorIsCorrect()
         {
             var fileWriter = new TestFileWriter();
-            var bldr = new CSVImportBuilder(fileWriter);
+            var validationMock = new Mock<IValidationHelper>();
+            var res = new List<ValidationResult>() as ICollection<ValidationResult>;
+            validationMock.Setup(x => x.IsModelValid(It.IsAny<object>(), out res)).Returns(true);
+
+            var bldr = new CSVImportBuilder(fileWriter,validationMock.Object);
 
             var delimiter = ',';
 
@@ -337,7 +379,8 @@ namespace RandImportGenerator.Test.Logic.Builders
         private CSVImportBuilder GetBasicBuilder()
         {
             var fileWriterMock = new Mock<IFileWriter>();
-            return new CSVImportBuilder(fileWriterMock.Object);
+            var validationMock = new Mock<IValidationHelper>();
+            return new CSVImportBuilder(fileWriterMock.Object, validationMock.Object);
         }
     }
 }

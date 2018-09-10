@@ -5,6 +5,8 @@ using System.Text;
 using RandImportGenerator.Objects.ImportDefinitions;
 using RandImportGenerator.Logic.FileWriters;
 using RandImportGenerator.Objects.ImportDefinitions.Columns;
+using System.ComponentModel.DataAnnotations;
+using RandImportGenerator.Utility.Validation;
 
 namespace RandImportGenerator.Logic.Builders
 {
@@ -16,7 +18,7 @@ namespace RandImportGenerator.Logic.Builders
             '"'
         };
 
-        public CSVImportBuilder(IFileWriter fileWriter) : base("csv", fileWriter)
+        public CSVImportBuilder(IFileWriter fileWriter, IValidationHelper validation) : base("csv", fileWriter, validation)
         {
             definition = new CSVImportDefinition();
         }
@@ -34,6 +36,13 @@ namespace RandImportGenerator.Logic.Builders
         {
             var csvDef = definition as CSVImportDefinition;
 
+            var results = new List<ValidationResult>() as ICollection<ValidationResult>;
+            if(!validation.IsModelValid(csvDef, out results))
+            {
+                var errors = string.Join(Environment.NewLine, results);
+                throw new Exception(errors);
+            }
+
             var file = new StringBuilder();
             var rand = new Random();
             var cols = csvDef.Columns.OrderBy(x => x.ColumnOrder).ToArray();
@@ -50,7 +59,7 @@ namespace RandImportGenerator.Logic.Builders
             file.AppendLine(hdr);
 
             //data rows
-            for(var i = 0; i < rowCount; i++)
+            for(var i = 0; i < csvDef.RowCount; i++)
             {
                 var row = "";
                 var rowCache = new Dictionary<string, object>();
@@ -78,7 +87,7 @@ namespace RandImportGenerator.Logic.Builders
                     }
 
                     //wrap in quotes if contains set delimiter
-                    if(temp.Contains(csvDef.Delimiter))
+                    if(temp.Contains(csvDef.Delimiter.Value))
                     {
                         temp = csvDef.QuoteCharacter + temp + csvDef.QuoteCharacter;                        
                     }

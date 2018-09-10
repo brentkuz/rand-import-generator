@@ -73,7 +73,7 @@ namespace RandImportGenerator
 
             if (bldr is DelimitedImportBuilder)
                 (bldr as DelimitedImportBuilder).SetDelimiter(delimiter);
-      
+
             if (bldr is CSVImportBuilder)
                 (bldr as CSVImportBuilder).SetQuoteCharacter(quote);
 

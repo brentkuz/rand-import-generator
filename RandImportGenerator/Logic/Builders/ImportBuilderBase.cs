@@ -1,6 +1,7 @@
 ﻿using RandImportGenerator.Logic.FileWriters;
 using RandImportGenerator.Objects.ImportDefinitions;
 using RandImportGenerator.Objects.ImportDefinitions.Columns;
+using RandImportGenerator.Utility.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,22 +14,21 @@ namespace RandImportGenerator.Logic.Builders
 
         protected readonly string fileExtension;
         protected ImportDefinition definition;
-        protected string outputPath;
-        protected int rowCount;
+        protected string outputPath;        
         protected Dictionary<string, int> columnSequence = new Dictionary<string, int>();
         protected IFileWriter fileWriter;
+        protected IValidationHelper validation;
 
-        public ImportBuilderBase(string fileExtension, IFileWriter fileWriter)
+        public ImportBuilderBase(string fileExtension, IFileWriter fileWriter, IValidationHelper validation)
         {
             this.fileExtension = fileExtension;
             this.fileWriter = fileWriter;
+            this.validation = validation;
         }
 
         public ImportDefinition Definition { get { return definition; } }
 
         public string OutputPath { get { return outputPath; } }
-
-        public int RowCount { get { return rowCount; } }
 
         public virtual void SetOutputPath(string path)
         {
@@ -67,7 +67,7 @@ namespace RandImportGenerator.Logic.Builders
         {
             if (count < 0)
                 throw new ArgumentException("Row Count must be a positive number.");
-            rowCount = count;
+            definition.RowCount = count;
         }
 
         public virtual bool ColumnSequenceExists(string colName)
@@ -142,6 +142,8 @@ namespace RandImportGenerator.Logic.Builders
             if (definition.GetType() != type && !definition.GetType().IsSubclassOf(type))
                 throw new InvalidCastException(message);
         }
+
+        
     }
 
   

@@ -1,7 +1,10 @@
-﻿namespace RandImportGenerator.Objects.ImportDefinitions
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RandImportGenerator.Objects.ImportDefinitions
 {
     public class CSVImportDefinition : DelimitedImportDefinition
     {
-        public char? QuoteCharacter { get; set; }
+        [Required]
+        public char QuoteCharacter { get; set; }
     }
 }
