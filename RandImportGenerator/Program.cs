@@ -55,11 +55,6 @@ namespace RandImportGenerator
                 {
                     ColumnOrder = 4,
                     Value = "static"
-                },
-                new ComputedColumn("Computed1")
-                {
-                    ColumnOrder = 5,
-                    Calculator = Computed1Calc
                 }
             };
             var delimiter = ',';
@@ -110,12 +105,7 @@ namespace RandImportGenerator
         {
             return dep1Map[val.ToString()];
         }
-        public static string Computed1Calc(params object[] args)
-        {
-            var date = Convert.ToDateTime(args[0]);
-            var addDays = Convert.ToInt16(args[1]);
-            return date.AddDays(addDays).ToString();
-        }
+ 
         /************************************************************************************/
     }
 }
