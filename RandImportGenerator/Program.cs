@@ -37,7 +37,6 @@ namespace RandImportGenerator
                 {
                     ColumnOrder = 3,
                     DependsOn = "Randomized1",
-                    //Calculator = Dependent1Calc
                     Map = new Dictionary<object, string>()
                             {
                                 { "opt,1", "Option 1" },
@@ -59,7 +58,7 @@ namespace RandImportGenerator
             };
             var delimiter = ',';
             var quote = '"';
-            var rowCount = 10000;
+            var rowCount = 100000;
             /******************************************************************/
 
 
