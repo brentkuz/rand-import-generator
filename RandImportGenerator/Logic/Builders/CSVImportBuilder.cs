@@ -10,13 +10,22 @@ namespace RandImportGenerator.Logic.Builders
 {
     public class CSVImportBuilder : DelimitedImportBuilder
     {
+        private readonly HashSet<char> quotes = new HashSet<char>()
+        {
+            '\'',
+            '"'
+        };
+
         public CSVImportBuilder(IFileWriter fileWriter) : base("csv", fileWriter)
         {
             definition = new CSVImportDefinition();
         }
 
-        public virtual void SetQuoteCharacter(char? quoteChar)
+        public virtual void SetQuoteCharacter(char quoteChar)
         {
+            if (!quotes.Contains(quoteChar))
+                throw new ArgumentException(string.Format("'{0}' is not a valid quote character", quoteChar));
+
             var csvDef = definition as CSVImportDefinition;
             csvDef.QuoteCharacter = quoteChar;
         }
@@ -63,9 +72,6 @@ namespace RandImportGenerator.Logic.Builders
                             break;
                         case ColumnType.Static:
                             temp = CalculateStatic(c as StaticColumn, rowCache);
-                            break;
-                        case ColumnType.Computed:
-                            temp = CalculateComputed(c as ComputedColumn, rowCache, DateTime.Now, 1);
                             break;
                         default:
                             throw new KeyNotFoundException(string.Format("Column Type {0} not supported", c.Type));

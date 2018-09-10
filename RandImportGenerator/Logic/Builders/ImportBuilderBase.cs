@@ -28,6 +28,8 @@ namespace RandImportGenerator.Logic.Builders
 
         public string OutputPath { get { return outputPath; } }
 
+        public int RowCount { get { return rowCount; } }
+
         public virtual void SetOutputPath(string path)
         {
             if (!fileWriter.DirectoryExists(path))
@@ -46,7 +48,7 @@ namespace RandImportGenerator.Logic.Builders
 
         public virtual void AddColumn(ColumnDefinitionBase col)
         {
-            if (definition.Columns.Any(x => x.Name == col.Name))
+            if (ColumnExists(col.Name))
                 throw new Exception(string.Format("A column with the name {0} already exists in the column collection", col.Name));
 
             if (col is AutoIncrementedColumn && !ColumnSequenceExists(col.Name))
@@ -76,6 +78,11 @@ namespace RandImportGenerator.Logic.Builders
         public virtual bool RandOptionsExist(string colName)
         {
             return randOptions.Keys.Contains(colName);
+        }
+
+        public virtual bool ColumnExists(string colName)
+        {
+            return definition.Columns.Any(x => x.Name == colName);
         }
 
         public abstract void BuildAndSaveFile();

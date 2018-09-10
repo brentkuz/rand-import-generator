@@ -5,6 +5,6 @@ namespace RandImportGenerator.Objects.ImportDefinitions
 {
     public class ImportDefinition
     {
-        public List<ColumnDefinitionBase> Columns { get; set; } = new List<ColumnDefinitionBase>();
+        public List<ColumnDefinitionBase> Columns { get; protected set; } = new List<ColumnDefinitionBase>();
     }
 }
