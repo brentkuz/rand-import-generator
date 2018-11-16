@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandImportGenerator.Test", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandImportGenerator.Core", "RandImportGenerator.Core\RandImportGenerator.Core.csproj", "{9BFBF1A8-8E20-4738-A27A-838DE8EBCD3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandImportGenerator.Web", "RandImportGenerator.Web\RandImportGenerator.Web.csproj", "{07234459-7EC1-4C68-B94B-877CF9135DD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9BFBF1A8-8E20-4738-A27A-838DE8EBCD3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BFBF1A8-8E20-4738-A27A-838DE8EBCD3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BFBF1A8-8E20-4738-A27A-838DE8EBCD3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07234459-7EC1-4C68-B94B-877CF9135DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07234459-7EC1-4C68-B94B-877CF9135DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07234459-7EC1-4C68-B94B-877CF9135DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07234459-7EC1-4C68-B94B-877CF9135DD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
