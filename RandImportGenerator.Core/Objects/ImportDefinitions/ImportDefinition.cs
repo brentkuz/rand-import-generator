@@ -1,10 +1,10 @@
-﻿using RandImportGenerator.Objects.ImportDefinitions.Columns;
-using RandImportGenerator.Utility.Validation.Attributes;
+﻿using RandImportGenerator.Core.Objects.ImportDefinitions.Columns;
+using RandImportGenerator.Core.Utility.Validation.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace RandImportGenerator.Objects.ImportDefinitions
+namespace RandImportGenerator.Core.Objects.ImportDefinitions
 {
     public class ImportDefinition
     {

@@ -1,7 +1,7 @@
-﻿using RandImportGenerator.Logic.FileWriters;
+﻿using RandImportGenerator.Core.Logic.FileWriters;
 using Unity;
-using RandImportGenerator.Logic.Builders;
-using RandImportGenerator.Utility.Validation;
+using RandImportGenerator.Core.Logic.Builders;
+using RandImportGenerator.Core.Utility.Validation;
 
 namespace RandImportGenerator.Utility
 {

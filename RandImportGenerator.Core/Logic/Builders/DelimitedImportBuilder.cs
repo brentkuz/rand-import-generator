@@ -1,8 +1,8 @@
-﻿using RandImportGenerator.Logic.FileWriters;
-using RandImportGenerator.Objects.ImportDefinitions;
-using RandImportGenerator.Utility.Validation;
+﻿using RandImportGenerator.Core.Logic.FileWriters;
+using RandImportGenerator.Core.Objects.ImportDefinitions;
+using RandImportGenerator.Core.Utility.Validation;
 
-namespace RandImportGenerator.Logic.Builders
+namespace RandImportGenerator.Core.Logic.Builders
 {
     public abstract class DelimitedImportBuilder : ImportBuilderBase
     {

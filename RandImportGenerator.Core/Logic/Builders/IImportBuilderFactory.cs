@@ -1,4 +1,4 @@
-﻿namespace RandImportGenerator.Logic.Builders
+﻿namespace RandImportGenerator.Core.Logic.Builders
 {
     public interface IImportBuilderFactory
     {

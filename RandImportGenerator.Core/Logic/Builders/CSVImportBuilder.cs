@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RandImportGenerator.Objects.ImportDefinitions;
-using RandImportGenerator.Logic.FileWriters;
-using RandImportGenerator.Objects.ImportDefinitions.Columns;
+using RandImportGenerator.Core.Objects.ImportDefinitions;
+using RandImportGenerator.Core.Logic.FileWriters;
+using RandImportGenerator.Core.Objects.ImportDefinitions.Columns;
 using System.ComponentModel.DataAnnotations;
-using RandImportGenerator.Utility.Validation;
+using RandImportGenerator.Core.Utility.Validation;
 
-namespace RandImportGenerator.Logic.Builders
+namespace RandImportGenerator.Core.Logic.Builders
 {
     public class CSVImportBuilder : DelimitedImportBuilder
     {

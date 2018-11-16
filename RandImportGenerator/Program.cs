@@ -1,5 +1,6 @@
-﻿using RandImportGenerator.Logic.Builders;
-using RandImportGenerator.Objects.ImportDefinitions.Columns;
+﻿using RandImportGenerator.Core;
+using RandImportGenerator.Core.Logic.Builders;
+using RandImportGenerator.Core.Objects.ImportDefinitions.Columns;
 using RandImportGenerator.Utility;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,11 @@ namespace RandImportGenerator
 {
     class Program
     {
-        static void Main(string[] args)
+        /*** File Config Example *************************************************
+        var fileType = FileType.CSV;
+        var outputPath = @"C:\test\test.csv";
+        var columns = new ColumnDefinitionBase[]
         {
-            //init
-            var container = new UnityContainerFactory().GetContainer();
-            var bldrFactory = container.Resolve<IImportBuilderFactory>();
-
-            /*** File Config *************************************************/
-            var fileType = FileType.CSV;
-            var outputPath = @"C:\test\test.csv";
-            var columns = new ColumnDefinitionBase[]
-            {
                 new AutoIncrementedColumn("Incremented1")
                 {
                     ColumnOrder = 1,
@@ -55,10 +50,45 @@ namespace RandImportGenerator
                     ColumnOrder = 4,
                     Value = "static"
                 }
+        };
+        var delimiter = ',';
+        var quote = '"';
+        var rowCount = 100000;
+        ******************************************************************/
+
+
+        static void Main(string[] args)
+        {
+            //init
+            var container = new UnityContainerFactory().GetContainer();
+            var bldrFactory = container.Resolve<IImportBuilderFactory>();
+
+            /*** File Config *************************************************/
+            var fileType = FileType.CSV;
+            var outputPath = @"C:\test\DrugItems.csv";
+            var columns = new ColumnDefinitionBase[]
+            {
+                new AutoIncrementedColumn("DrugUnitID")
+                {
+                    ColumnOrder = 1,
+                    StartingSequenceNumber = 100000,
+                    IncrementValue = 1
+                },
+                new AutoIncrementedColumn("PickNr")
+                {
+                    ColumnOrder = 2,
+                    StartingSequenceNumber = 100000,
+                    IncrementValue = 1
+                },
+                new RandomizedColumn("DrugCode")
+                {
+                    ColumnOrder = 3,
+                    RandomizationOptions = new string[] {"A", "B", "C"}
+                },
             };
             var delimiter = ',';
             var quote = '"';
-            var rowCount = 100000;
+            var rowCount = 20000;
             /******************************************************************/
 
 
@@ -74,8 +104,8 @@ namespace RandImportGenerator
             if (bldr is DelimitedImportBuilder)
                 (bldr as DelimitedImportBuilder).SetDelimiter(delimiter);
 
-            if (bldr is CSVImportBuilder)
-                (bldr as CSVImportBuilder).SetQuoteCharacter(quote);
+            //if (bldr is CSVImportBuilder)
+            //    (bldr as CSVImportBuilder).SetQuoteCharacter(quote);
 
             bldr.SetRowCount(rowCount);
 

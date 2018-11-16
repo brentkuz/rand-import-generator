@@ -1,4 +1,4 @@
-﻿using RandImportGenerator.Objects.ImportDefinitions.Columns;
+﻿using RandImportGenerator.Core.Objects.ImportDefinitions.Columns;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RandImportGenerator.Utility.Validation.Attributes
+namespace RandImportGenerator.Core.Utility.Validation.Attributes
 {
     public class CollectionIsNotEmpty : ValidationAttribute
     {

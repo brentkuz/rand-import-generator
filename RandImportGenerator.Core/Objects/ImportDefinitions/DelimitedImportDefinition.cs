@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RandImportGenerator.Objects.ImportDefinitions
+namespace RandImportGenerator.Core.Objects.ImportDefinitions
 {
     public class DelimitedImportDefinition : ImportDefinition
     {

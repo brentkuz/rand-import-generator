@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RandImportGenerator.Utility.Validation
+namespace RandImportGenerator.Core.Utility.Validation
 {
     public class ModelValidationHelper : IValidationHelper
     {

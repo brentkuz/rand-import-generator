@@ -76,33 +76,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logic\Builders\CSVImportBuilder.cs" />
-    <Compile Include="Logic\Builders\DelimitedImportBuilder.cs" />
-    <Compile Include="Logic\Builders\IImportBuilderFactory.cs" />
-    <Compile Include="Logic\FileWriters\FileWriter.cs" />
-    <Compile Include="Logic\FileWriters\IFileWriter.cs" />
-    <Compile Include="Logic\Builders\ImportBuilderBase.cs" />
-    <Compile Include="Logic\Builders\ImportBuilderFactory.cs" />
-    <Compile Include="Objects\ImportDefinitions\Columns\AutoIncrementedColumn.cs" />
-    <Compile Include="Objects\ImportDefinitions\Columns\ColumnDefinitionBase.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Objects\ImportDefinitions\Columns\ComputedColumn.cs" />
-    <Compile Include="Objects\ImportDefinitions\Columns\DependentColumn.cs" />
-    <Compile Include="Objects\ImportDefinitions\CSVImportDefinition.cs" />
-    <Compile Include="Objects\ImportDefinitions\DelimitedImportDefinition.cs" />
-    <Compile Include="Objects\ImportDefinitions\ImportDefinition.cs" />
-    <Compile Include="Objects\ImportDefinitions\Columns\RandomizedColumn.cs" />
-    <Compile Include="Objects\ImportDefinitions\Columns\StaticColumn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\UnityContainerFactory.cs" />
-    <Compile Include="Utility\Validation\Attributes\CollectionIsNotEmptyAttribute.cs" />
-    <Compile Include="Utility\Validation\IValidationHelper.cs" />
-    <Compile Include="Utility\Validation\ModelValidationHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RandImportGenerator.Core\RandImportGenerator.Core.csproj">
+      <Project>{9bfbf1a8-8e20-4738-a27a-838de8ebcd3e}</Project>
+      <Name>RandImportGenerator.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

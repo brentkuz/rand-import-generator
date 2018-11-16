@@ -1,4 +1,4 @@
-﻿using RandImportGenerator.Logic.FileWriters;
+﻿using RandImportGenerator.Core.Logic.FileWriters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace RandImportGenerator
+﻿namespace RandImportGenerator.Core
 {
     public enum FileType
     {

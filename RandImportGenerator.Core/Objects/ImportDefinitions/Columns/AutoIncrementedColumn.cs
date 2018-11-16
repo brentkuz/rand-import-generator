@@ -1,4 +1,4 @@
-﻿namespace RandImportGenerator.Objects.ImportDefinitions.Columns
+﻿namespace RandImportGenerator.Core.Objects.ImportDefinitions.Columns
 {
     public class AutoIncrementedColumn : ColumnDefinitionBase
     {

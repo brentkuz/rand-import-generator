@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace RandImportGenerator.Logic.FileWriters
+namespace RandImportGenerator.Core.Logic.FileWriters
 {
     public class FileWriter : IFileWriter
     {

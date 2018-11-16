@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RandImportGenerator.Logic.Builders;
+using RandImportGenerator.Core.Logic.Builders;
 using Moq;
-using RandImportGenerator.Logic.FileWriters;
-using RandImportGenerator.Objects.ImportDefinitions.Columns;
-using RandImportGenerator.Objects.ImportDefinitions;
+using RandImportGenerator.Core.Logic.FileWriters;
+using RandImportGenerator.Core.Objects.ImportDefinitions.Columns;
+using RandImportGenerator.Core.Objects.ImportDefinitions;
 using RandImportGenerator.Test.Fakes;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using RandImportGenerator.Utility.Validation;
+using RandImportGenerator.Core.Utility.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace RandImportGenerator.Test.Logic.Builders

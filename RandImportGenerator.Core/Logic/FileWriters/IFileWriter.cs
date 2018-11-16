@@ -1,4 +1,4 @@
-﻿namespace RandImportGenerator.Logic.FileWriters
+﻿namespace RandImportGenerator.Core.Logic.FileWriters
 {
     public interface IFileWriter
     {

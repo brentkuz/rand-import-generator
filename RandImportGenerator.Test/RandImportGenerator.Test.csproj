@@ -73,6 +73,10 @@
     <Folder Include="Objects\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RandImportGenerator.Core\RandImportGenerator.Core.csproj">
+      <Project>{9bfbf1a8-8e20-4738-a27a-838de8ebcd3e}</Project>
+      <Name>RandImportGenerator.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RandImportGenerator\RandImportGenerator.csproj">
       <Project>{86665779-d098-4809-824f-d3ae6e0c1969}</Project>
       <Name>RandImportGenerator</Name>

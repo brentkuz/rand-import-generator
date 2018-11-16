@@ -1,8 +1,8 @@
-﻿using RandImportGenerator.Logic.FileWriters;
-using RandImportGenerator.Utility.Validation;
+﻿using RandImportGenerator.Core.Logic.FileWriters;
+using RandImportGenerator.Core.Utility.Validation;
 using System;
 
-namespace RandImportGenerator.Logic.Builders
+namespace RandImportGenerator.Core.Logic.Builders
 {
     public class ImportBuilderFactory : IImportBuilderFactory
     {
