@@ -2,6 +2,7 @@
 {
     public class AutoIncrementedColumn : ColumnDefinitionBase
     {
+        public AutoIncrementedColumn() : base(ColumnType.AutoIncremented) { }
         public AutoIncrementedColumn(string name) : base(name, ColumnType.AutoIncremented)
         {
         }

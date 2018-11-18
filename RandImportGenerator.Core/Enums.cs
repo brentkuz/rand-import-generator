@@ -1,4 +1,6 @@
-﻿namespace RandImportGenerator.Core
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RandImportGenerator.Core
 {
     public enum FileType
     {
@@ -6,10 +8,15 @@
     }
     public enum ColumnType
     {
+        [Display(Name = "Auto Incremented")]
         AutoIncremented = 1,
+        [Display(Name = "Randomized")]
         Randomized = 2,
+        [Display(Name = "Dependent")]
         Dependent = 3,
+        [Display(Name = "Static")]
         Static = 4,
+        [Display(Name = "Computed")]
         Computed = 5
     }
    

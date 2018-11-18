@@ -2,7 +2,7 @@
 
 namespace RandImportGenerator.Core.Logic.FileWriters
 {
-    public class FileWriter : IFileWriter
+    public class FileWriter : IWriter
     {
         public bool DirectoryExists(string path)
         {

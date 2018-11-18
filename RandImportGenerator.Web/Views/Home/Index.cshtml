@@ -6,8 +6,18 @@
     ViewBag.Title = "Home Page";
 }
 
-<div>
-
+<div id="indexApp">
+    <div class="row">
+        <div class="col-sm-12">
+            <select v-model="ColumnType" class="form-control inline" v-on:change="LoadColumnEditor">
+                <option v-bind:value="null" disabled selected>Select</option>
+                <option v-for="option in ColumnTypeOptions" v-bind:value="option.Value">
+                    {{option.Text}}
+                </option>
+            </select>
+        </div>
+        <div id="columnEditorContent"></div>
+    </div>
 </div>
 
 @section config{

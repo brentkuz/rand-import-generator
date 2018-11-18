@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RandImportGenerator.Test.Fakes
 {
-    public class TestFileWriter : IFileWriter
+    public class TestFileWriter : IWriter
     {
         public string InMemoryFileContents { get; set; }
 

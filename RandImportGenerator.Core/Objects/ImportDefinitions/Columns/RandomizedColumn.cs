@@ -2,6 +2,7 @@
 {
     public class RandomizedColumn : ColumnDefinitionBase
     {
+        public RandomizedColumn() : base(ColumnType.Randomized) { }
         public RandomizedColumn(string name) : base(name, ColumnType.Randomized)
         {
         }

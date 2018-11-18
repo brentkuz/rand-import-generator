@@ -16,10 +16,10 @@ namespace RandImportGenerator.Core.Logic.Builders
         protected ImportDefinition definition;
         protected string outputPath;        
         protected Dictionary<string, int> columnSequence = new Dictionary<string, int>();
-        protected IFileWriter fileWriter;
+        protected IWriter fileWriter;
         protected IValidationHelper validation;
 
-        public ImportBuilderBase(string fileExtension, IFileWriter fileWriter, IValidationHelper validation)
+        public ImportBuilderBase(string fileExtension, IWriter fileWriter, IValidationHelper validation)
         {
             this.fileExtension = fileExtension;
             this.fileWriter = fileWriter;

@@ -1,6 +1,6 @@
 ﻿namespace RandImportGenerator.Core.Logic.FileWriters
 {
-    public interface IFileWriter
+    public interface IWriter
     {
         void Write(string path, string contents);
         bool DirectoryExists(string path);

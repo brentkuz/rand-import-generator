@@ -6,7 +6,7 @@ namespace RandImportGenerator.Core.Logic.Builders
 {
     public abstract class DelimitedImportBuilder : ImportBuilderBase
     {
-        public DelimitedImportBuilder(string fileExtension, IFileWriter fileWriter, IValidationHelper validation) : base(fileExtension, fileWriter, validation)
+        public DelimitedImportBuilder(string fileExtension, IWriter fileWriter, IValidationHelper validation) : base(fileExtension, fileWriter, validation)
         {
         }
 

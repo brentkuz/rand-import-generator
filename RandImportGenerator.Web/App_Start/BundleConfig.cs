@@ -14,12 +14,14 @@ namespace RandImportGenerator.Web
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+
             bundles.Add(new ScriptBundle("~/bundles/vendor").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/modernizr-*",
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/respond.js"));
+                        "~/Scripts/respond.js",
+                        "~/Scripts/vue.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/global.js",

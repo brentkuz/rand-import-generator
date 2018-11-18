@@ -6,10 +6,10 @@ namespace RandImportGenerator.Core.Logic.Builders
 {
     public class ImportBuilderFactory : IImportBuilderFactory
     {
-        private IFileWriter fileWriter;
+        private IWriter fileWriter;
         private IValidationHelper validation;
 
-        public ImportBuilderFactory(IFileWriter fileWriter, IValidationHelper validation)
+        public ImportBuilderFactory(IWriter fileWriter, IValidationHelper validation)
         {
             this.fileWriter = fileWriter;
             this.validation = validation;

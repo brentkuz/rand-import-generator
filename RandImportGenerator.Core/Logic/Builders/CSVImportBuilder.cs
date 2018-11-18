@@ -18,7 +18,7 @@ namespace RandImportGenerator.Core.Logic.Builders
             '"'
         };
 
-        public CSVImportBuilder(IFileWriter fileWriter, IValidationHelper validation) : base("csv", fileWriter, validation)
+        public CSVImportBuilder(IWriter fileWriter, IValidationHelper validation) : base("csv", fileWriter, validation)
         {
             definition = new CSVImportDefinition();
         }

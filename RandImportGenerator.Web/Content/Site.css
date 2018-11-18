@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*Shared*/
+.inline{display:inline;}
+.inline-block{display:inline-block;}

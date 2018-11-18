@@ -31,7 +31,7 @@ namespace RandImportGenerator.Test.Logic.Builders
         {
             var path = @"C:\test\test.txt";
 
-            var fileWriterMock = new Mock<IFileWriter>();
+            var fileWriterMock = new Mock<IWriter>();
             fileWriterMock.Setup(f => f.DirectoryExists(It.IsAny<string>())).Returns(true);
             var validationMock = new Mock<IValidationHelper>();
             var bldr = new CSVImportBuilder(fileWriterMock.Object, validationMock.Object);
@@ -45,7 +45,7 @@ namespace RandImportGenerator.Test.Logic.Builders
         {
             var path = @"C:\no_dir\test.csv";
 
-            var fileWriterMock = new Mock<IFileWriter>();
+            var fileWriterMock = new Mock<IWriter>();
             fileWriterMock.Setup(f => f.DirectoryExists(It.IsAny<string>())).Returns(false);
             var validationMock = new Mock<IValidationHelper>();
             var bldr = new CSVImportBuilder(fileWriterMock.Object, validationMock.Object);
@@ -58,7 +58,7 @@ namespace RandImportGenerator.Test.Logic.Builders
         {
             var path = @"C:\test\test.csv";
 
-            var fileWriterMock = new Mock<IFileWriter>();
+            var fileWriterMock = new Mock<IWriter>();
             fileWriterMock.Setup(f => f.DirectoryExists(It.IsAny<string>())).Returns(true);
             var validationMock = new Mock<IValidationHelper>();
             var bldr = new CSVImportBuilder(fileWriterMock.Object, validationMock.Object);
@@ -378,7 +378,7 @@ namespace RandImportGenerator.Test.Logic.Builders
 
         private CSVImportBuilder GetBasicBuilder()
         {
-            var fileWriterMock = new Mock<IFileWriter>();
+            var fileWriterMock = new Mock<IWriter>();
             var validationMock = new Mock<IValidationHelper>();
             return new CSVImportBuilder(fileWriterMock.Object, validationMock.Object);
         }

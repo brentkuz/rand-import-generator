@@ -2,6 +2,7 @@
 {
     public class ComputedColumn : ColumnDefinitionBase
     {
+        public ComputedColumn() : base(ColumnType.Computed) { }
         public ComputedColumn(string name) : base(name, ColumnType.Computed)
         {
         }

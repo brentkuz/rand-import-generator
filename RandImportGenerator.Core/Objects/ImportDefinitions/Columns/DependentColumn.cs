@@ -4,6 +4,7 @@ namespace RandImportGenerator.Core.Objects.ImportDefinitions.Columns
 {
     public class DependentColumn : ColumnDefinitionBase
     {
+        public DependentColumn() : base(ColumnType.Dependent) { }
         public DependentColumn(string name) : base(name, ColumnType.Dependent)
         {
         }
