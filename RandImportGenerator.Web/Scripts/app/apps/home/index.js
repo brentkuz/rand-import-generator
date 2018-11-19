@@ -15,24 +15,33 @@
                 ColumnTypeOptions: [],
                 ColumnType: null,
                 Definition: {
-                    AutoIncremented: []
+                    Columns: []
 
-                }
+                },
+                IsEdit: false
             },
             created: function () {
-                if (config.ColumnTypes !== null) {
-                    this.columnTypes = JSON.parse(config.ColumnTypes);
-                    var options = [];
-                    
-                    for (var key in this.columnTypes) {
-                        options.push({ Value: key, Text: this.columnTypes[key] });
-                    }
-                    this.ColumnTypeOptions = options;
+                //private methods
+                this.FindColumn = function (name) {
+                    return $.grep(this.Definition.Columns, function (item) {
+                        return item.Name === name;
+                    })
+                };
+                
+                this.columnTypes = JSON.parse(config.ColumnTypes);
+                var options = [];                    
+                for (var key in this.columnTypes) {
+                    options.push({ Value: key, Text: this.columnTypes[key] });
                 }
+
+                this.ColumnTypeOptions = options;
 
                 //subscriptions
                 $.Topic("AddColumn").Subscribe(this.AddColumn);
-                $.Topic("RemoveColumn").Subscribe(this.RemoveColumn);
+                $.Topic("DeleteColumn").Subscribe(this.DeleteColumn);
+                $.Topic("EditColumn").Subscribe(this.EditColumn);
+                $.Topic("UpdateColumn").Subscribe(this.UpdateColumn);
+                $.Topic("CancelEdit").Subscribe(this.CancelEdit);
 
                 //load components
                 initializers.ColumnListApp();
@@ -40,21 +49,25 @@
             destroyed: function(){
                 //subscriptions
                 $.Topic("AddColumn").Unsubscribe(this.AddColumn);
-                $.Topic("RemoveColumn").Unsubscribe(this.RemoveColumn);
+                $.Topic("DeleteColumn").Unsubscribe(this.DeleteColumn);
+                $.Topic("EditColumn").Subscribe(this.EditColumn);
+                $.Topic("UpdateColumn").Unsubscribe(this.UpdateColumn);
+                $.Topic("CancelEdit").Unsubscribe(this.CancelEdit);
             },
             methods: {
-                LoadColumnEditor: function () {
+                LoadColumnEditor: function (columnToEdit) {
                     try {
                         var self = this;
-                        $.get(urls.CSVBuilder_GetColumnTemplate + this.ColumnType,
+                        var type = columnToEdit != undefined ? columnToEdit.Type : this.ColumnType;
+                        $.get(urls.CSVBuilder_GetColumnTemplate + type,
                             null,
                             function (resp) {
                                 if (resp != null) {
                                     $(editorEl).html(resp);
-                                    var columnType = self.columnTypes[self.ColumnType];
+                                    var columnType = self.columnTypes[type];
                                 
                                     var initializerName = (columnType + "ColumnApp").replace(" ", "");
-                                    initializers[initializerName]();
+                                    initializers[initializerName](type, columnToEdit);
                                 } else {
                                     notification.UI("Failed to load column editor.", true);
                                 }
@@ -66,27 +79,61 @@
                         throw err;
                     }
                 },
-                AddColumn: function (type, column) {
-                    var columns = this.Definition[type];
-                    var columnWithName = $.grep(columns, function (item) {
-                        return item.Name === column.Name;
-                    })
+                AddColumn: function (column) {
+                    var columnWithName = this.FindColumn(column.Name);
                     if (columnWithName.length > 0) {
                         notification.UI("Column with the name " + column.Name + " already exists", true);
                         return;
                     }
-                    columns.push(column);
+                    this.Definition.Columns.push(column);
 
+                    //refresh UI
+                    this.RefreshList();
+                    this.LoadColumnEditor();
 
-                    //refresh column list
+                    notification.UI("Success", false);
+                },
+                DeleteColumn: function (name) {
+                    var column = this.FindColumn(name);
+                    if (column.length == 0) {
+                        notification.UI("Column with the name " + name + " does not exist. Please refresh the page.", true);
+                    }
+                    //must use splice for Vue reactivity
+                    this.Definition.Columns.splice(this.Definition.Columns.indexOf(column), 1)
+
+                    this.RefreshList();
+
+                    notification.UI("Success", false);
+                },
+                EditColumn: function(name){
+                    var columns = this.FindColumn(name);
+                    if (columns.length > 1) {
+                        notification.UI("There are multiple columns with the name " + name + ". Please refresh the page.", true);
+                    }
+                    var columnToEdit = columns[0];
+
+                    this.IsEdit = true;
+                    this.ColumnType = columnToEdit.Type;
+                    //load editor
+                    this.LoadColumnEditor(columnToEdit);
+                },
+                UpdateColumn: function(column){
+                    this.IsEdit = false;
+                    this.RefreshList();
+
+                    this.LoadColumnEditor();
+
+                    notification.UI("Success", false);
+                },
+                CancelEdit: function () {
+                    this.IsEdit = false;
+                    this.LoadColumnEditor();
                     this.RefreshList();
                 },
-                RemoveColumn: function (name) {
-
-                },
                 RefreshList: function () {
-                    var displayColumns = $.map(this.Definition.AutoIncremented, function (item) {
-                        return { Name: item.Name, Type: "Auto Incremented", Order: item.Order };
+                    var self = this;
+                    var displayColumns = $.map(this.Definition.Columns, function (item) {
+                        return { Name: item.Name, Type: self.columnTypes[item.Type], Order: item.Order };
                     });
                     $.Topic("RefreshColumnList").Publish(displayColumns);
                 }

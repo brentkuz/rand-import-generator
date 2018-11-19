@@ -7,9 +7,10 @@ using System.Web.Mvc;
 
 namespace RandImportGenerator.Web.Controllers
 {
-    [OutputCache(NoStore = true, Duration = 0)]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class CSVBuilderController : Controller
     {
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public PartialViewResult GetColumnTemplate(ColumnType type)
         {
             var viewPath = string.Format("{0}{1}{2}.{3}", 

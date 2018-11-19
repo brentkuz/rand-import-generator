@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-sm-6">
         <label>Name</label>
-        <input type="text" v-model="Definition.Name" class="form-control inline" required/>
+        <input type="text" v-model="Definition.Name" v-bind:disabled="IsEdit == true" class="form-control inline" required/>
     </div>
     <div class="col-sm-6">
         <label>Order</label>

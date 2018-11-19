@@ -6,20 +6,28 @@
     ViewBag.Title = "Home Page";
 }
 
-<div id="indexApp">
-    <div class="row">
-        <div class="col-sm-12">
-            <select v-model="ColumnType" class="form-control inline" v-on:change="LoadColumnEditor">
-                <option v-bind:value="null" disabled selected>Select</option>
-                <option v-for="option in ColumnTypeOptions" v-bind:value="option.Value">
-                    {{option.Text}}
-                </option>
-            </select>
-        </div>        
+<div class="app-container radius">
+    <h3>Basic Config</h3>
+</div>
+<div class="app-container radius">
+    <h3>Add Columns</h3>
+    <div id="indexApp">
+        <div class="row">
+            <div class="col-sm-12">
+                <select v-model="ColumnType" class="form-control inline" v-on:change="LoadColumnEditor(undefined)" v-bind:disabled="IsEdit == true">
+                    <option v-bind:value="null" disabled selected>Select</option>
+                    <option v-for="option in ColumnTypeOptions" v-bind:value="option.Value">
+                        {{option.Text}}
+                    </option>
+                </select>
+            </div>
+        </div>
     </div>
     <div id="columnEditorContent"></div>
     @Html.Partial("~/Views/Shared/ColumnListPartial.cshtml")
 </div>
+    
+
 
 @section config{
     @*Injected config*@

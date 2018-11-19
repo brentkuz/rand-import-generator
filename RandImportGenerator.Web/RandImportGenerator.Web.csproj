@@ -209,6 +209,7 @@
     <Content Include="Scripts\app\global.js" />
     <Content Include="Scripts\app\models.js" />
     <Content Include="Scripts\app\utility.js" />
+    <Content Include="Scripts\blockUI.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

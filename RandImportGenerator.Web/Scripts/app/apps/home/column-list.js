@@ -7,10 +7,15 @@
     initializers.ColumnListApp = function () {
         console.debug(name + " init");
 
+        var listEl = "#columnListApp";
+
+        var blocker = util.Blocker(listEl);
+
         var columnListApp = new Vue({
-            el: "#columnListApp",
+            el:listEl,
             data: {
-                Columns: []
+                Columns: [],
+                IsEdit: false
             },
             created: function () {
                 //subscriptions
@@ -25,7 +30,16 @@
                     for (var i = 0; i < columns.length; i++) {
                         this.Columns.push(columns[i]);
                     }
-                    alert(this.Columns.length)
+                    this.IsEdit = false;
+                    blocker.Unblock();
+                },
+                Delete: function (name) {
+                    $.Topic("DeleteColumn").Publish(name);
+                },
+                Edit: function (name) {
+                    this.IsEdit = true;
+                    blocker.Block();
+                    $.Topic("EditColumn").Publish(name);
                 }
             }
         });

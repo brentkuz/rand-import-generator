@@ -4,21 +4,25 @@
     var name = "AutoIncrementedColumnApp";
     util.CheckDependencies(name, arguments);
 
-    initializers.AutoIncrementedColumnApp = function () {
+    initializers.AutoIncrementedColumnApp = function (type, columnToEdit) {
         console.debug(name + " init");
 
         var autoIncrementedColumnApp = new Vue({
             el: "#autoIncrementedColumnApp",
             data: {
-                Definition: new models.AutoIncrementedColumn()
-            },
-            created: function () {
-
+                Definition: columnToEdit || new models.AutoIncrementedColumn(type),
+                IsEdit: columnToEdit !== undefined
             },
             methods: {
                 Submit: function () {
-                    $.Topic("AddColumn").Publish("AutoIncremented", this.Definition);
-                    this.Definition = new models.AutoIncrementedColumn();
+                    if (!this.IsEdit) {
+                        $.Topic("AddColumn").Publish(this.Definition);
+                    } else {
+                        $.Topic("UpdateColumn").Publish(this.Definition);
+                    }
+                },
+                CancelEdit: function () {
+                    $.Topic("CancelEdit").Publish();
                 }
             }
         });

@@ -21,7 +21,8 @@ namespace RandImportGenerator.Web
                         "~/Scripts/modernizr-*",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/vue.js"));
+                        "~/Scripts/vue.js",
+                        "~/Scripts/blockUI.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/global.js",

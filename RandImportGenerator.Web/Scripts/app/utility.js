@@ -47,10 +47,12 @@
             UI: function (msg, isError) {
                 var e = $(el);
                 if (isError) {
+                    e.removeClass("success-text");
                     e.addClass("error-text");
                 }
                 else {
                     e.removeClass("error-text");
+                    e.addClass("success-text");
                 }
                 e.html(msg);
             },
@@ -64,13 +66,25 @@
     util.Loader = function (el) {
         return {
             Show: function () {
-
+                
             },
             Hide: function () {
-
+                
             }
         }
     };
+
+    //UI blocjker
+    util.Blocker = function (el) {
+        return {
+            Block: function () {
+                $(el).block({ message: null });
+            },
+            Unblock: function () {
+                $(el).unblock();
+            }
+        }
+    }
 
     //load urls
     var conf = $("#config").html();

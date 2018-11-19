@@ -7,9 +7,10 @@ using System.Web.Mvc;
 
 namespace RandImportGenerator.Web.Controllers
 {
-    [OutputCache(NoStore = true, Duration = 0)]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class HomeController : Controller
     {
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Index()
         {
             return View(new IndexViewModel());

@@ -26,3 +26,11 @@ textarea {
 /*Shared*/
 .inline{display:inline;}
 .inline-block{display:inline-block;}
+.error-text{color:red;}
+.success-text{color:green;}
+
+.app-container{padding:10px;border:1px solid gray;margin-top:10px;}
+.radius{border-radius:5px}
+.no-margin{margin:0 !important;}
+h3{margin:5px 0}
+hr.thin{margin:5px 0}
