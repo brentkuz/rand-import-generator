@@ -29,6 +29,8 @@ namespace RandImportGenerator.Web
                         "~/Scripts/app/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/home-index").Include(
+                        "~/Scripts/app/apps/home/column-list.js",
+                        "~/Scripts/app/apps/home/auto-incremented-column.js",
                         "~/Scripts/app/apps/home/index.js"));
 
         }

@@ -7,11 +7,11 @@
         <div class="row">
             <div class="col-sm-6">
                 <label>Starting Sequence #</label>
-                <input type="text" v-model="StartingSequenceNumber" class="form-control inline"/>
+                <input type="number" v-model="Definition.StartingSequenceNumber" class="form-control inline" required min="0"/>
             </div>
             <div class="col-sm-6">
                 <label>Increment Value</label>
-                <input type="text" v-model="IncrementValue" class="form-control inline"/>
+                <input type="number" v-model="Definition.IncrementValue" class="form-control inline" required min="0"/>
             </div>
         </div>
         <div class="row">

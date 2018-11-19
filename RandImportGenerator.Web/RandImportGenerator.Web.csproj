@@ -203,6 +203,8 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\apps\home\auto-incremented-column.js" />
+    <Content Include="Scripts\app\apps\home\column-list.js" />
     <Content Include="Scripts\app\apps\home\index.js" />
     <Content Include="Scripts\app\global.js" />
     <Content Include="Scripts\app\utility.js" />
@@ -243,6 +245,7 @@
     <Content Include="Views\Shared\ColumnTemplates\DependentPartial.cshtml" />
     <Content Include="Views\Shared\ColumnTemplates\ColumnBasePartial.cshtml" />
     <Content Include="Views\Shared\ColumnTemplates\StaticPartial.cshtml" />
+    <Content Include="Views\Shared\ColumnListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

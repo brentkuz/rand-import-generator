@@ -2,10 +2,10 @@
 <div class="row">
     <div class="col-sm-6">
         <label>Name</label>
-        <input type="text" v-model="Name" class="form-control inline"/>
+        <input type="text" v-model="Definition.Name" class="form-control inline" required/>
     </div>
     <div class="col-sm-6">
         <label>Order</label>
-        <input type="text" v-model="Order" class="form-control inline"/>
+        <input type="number" v-model="Definition.Order" class="form-control inline" required min="0"/>
     </div>
 </div>
