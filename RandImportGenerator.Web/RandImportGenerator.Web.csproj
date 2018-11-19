@@ -207,6 +207,7 @@
     <Content Include="Scripts\app\apps\home\column-list.js" />
     <Content Include="Scripts\app\apps\home\index.js" />
     <Content Include="Scripts\app\global.js" />
+    <Content Include="Scripts\app\models.js" />
     <Content Include="Scripts\app\utility.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -250,7 +251,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\CSVBuilder\" />
-    <Folder Include="Scripts\app\models\" />
     <Folder Include="Scripts\app\services\" />
     <Folder Include="Views\CSVBuilder\" />
   </ItemGroup>

@@ -31,11 +31,16 @@
                 }
 
                 //subscriptions
-                $.Topic("AddColumn").subscribe(this.AddColumn);
-                $.Topic("RemoveColumn").subscribe(this.RemoveColumn);
+                $.Topic("AddColumn").Subscribe(this.AddColumn);
+                $.Topic("RemoveColumn").Subscribe(this.RemoveColumn);
 
                 //load components
                 initializers.ColumnListApp();
+            },
+            destroyed: function(){
+                //subscriptions
+                $.Topic("AddColumn").Unsubscribe(this.AddColumn);
+                $.Topic("RemoveColumn").Unsubscribe(this.RemoveColumn);
             },
             methods: {
                 LoadColumnEditor: function () {
@@ -47,9 +52,7 @@
                                 if (resp != null) {
                                     $(editorEl).html(resp);
                                     var columnType = self.columnTypes[self.ColumnType];
-                                    //    $.grep(this.ColumnTypeOptions, function (item) {
-                                    //    return item.Value === this.ColumnType;
-                                    //});
+                                
                                     var initializerName = (columnType + "ColumnApp").replace(" ", "");
                                     initializers[initializerName]();
                                 } else {
@@ -74,12 +77,18 @@
                     }
                     columns.push(column);
 
+
                     //refresh column list
-                    //var displayColumns = $.map()
-                    $.Topic("RefreshColumnList").publish(this.Definition);
+                    this.RefreshList();
                 },
                 RemoveColumn: function (name) {
 
+                },
+                RefreshList: function () {
+                    var displayColumns = $.map(this.Definition.AutoIncremented, function (item) {
+                        return { Name: item.Name, Type: "Auto Incremented", Order: item.Order };
+                    });
+                    $.Topic("RefreshColumnList").Publish(displayColumns);
                 }
             }
         });

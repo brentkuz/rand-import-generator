@@ -1,6 +1,6 @@
 ﻿// Auto-Incremented Column app
 
-(function ($, Vue, util, initializers) {
+(function ($, Vue, util, initializers, models) {
     var name = "AutoIncrementedColumnApp";
     util.CheckDependencies(name, arguments);
 
@@ -10,22 +10,18 @@
         var autoIncrementedColumnApp = new Vue({
             el: "#autoIncrementedColumnApp",
             data: {
-                Definition: {
-                    Name: "",
-                    Order: null,
-                    StartingSequenceNumber: null,
-                    IncrementValue: null
-                }
+                Definition: new models.AutoIncrementedColumn()
             },
             created: function () {
 
             },
             methods: {
                 Submit: function () {
-                    $.Topic("AddColumn").publish("AutoIncremented", this.Definition);
+                    $.Topic("AddColumn").Publish("AutoIncremented", this.Definition);
+                    this.Definition = new models.AutoIncrementedColumn();
                 }
             }
         });
     };
 
-})(jQuery, Vue, window.App.Utility, window.App.Initializers);
+})(jQuery, Vue, window.App.Utility, window.App.Initializers, window.App.Models);

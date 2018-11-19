@@ -25,6 +25,7 @@ namespace RandImportGenerator.Web
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/global.js",
+                        "~/Scripts/app/models.js",
                         "~/Scripts/app/utility.js",
                         "~/Scripts/app/app.js"));
 

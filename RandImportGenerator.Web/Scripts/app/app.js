@@ -11,9 +11,9 @@
         if (!topic) {
             callbacks = $.Callbacks();
             topic = {
-                publish: callbacks.fire,
-                subscribe: callbacks.add,
-                unsubscribe: callbacks.remove
+                Publish: callbacks.fire,
+                Subscribe: callbacks.add,
+                Unsubscribe: callbacks.remove
             };
             if (id) {
                 topics[id] = topic;

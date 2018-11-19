@@ -1,6 +1,33 @@
 ﻿<hr />
 <div id="columnListApp">
-
-    Column List
+    <div class="row table-header">
+        <div class="col-sm-3">
+            <label>Name</label>
+        </div>
+        <div class="col-sm-3">
+            <label>Type</label>
+        </div>
+        <div class="col-sm-3">
+            <label>Order</label>
+        </div>
+        <div class="col-sm-3">
+            {{Columns.length}}
+        </div>
+    </div>
+    <div class="row" v-for="col in Columns" >
+        <div class="col-sm-3">
+            {{col.Name}}
+        </div>
+        <div class="col-sm-3">
+            {{col.Type}}
+        </div>
+        <div class="col-sm-3">
+            {{col.Order}}
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-default">Edit</button>
+            <button class="btn btn-danger">Delete</button>
+        </div>
+    </div>
 
 </div>

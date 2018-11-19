@@ -7,23 +7,25 @@
     initializers.ColumnListApp = function () {
         console.debug(name + " init");
 
-        var autoIncrementedColumnApp = new Vue({
+        var columnListApp = new Vue({
             el: "#columnListApp",
             data: {
-                Definition: {
-                    Name: "",
-                    Order: null,
-                    StartingSequenceNumber: null,
-                    IncrementValue: null
-                }
+                Columns: []
             },
             created: function () {
                 //subscriptions
-                $.Topic("RefreshColumnList").subscribe(this.Refresh);
+                $.Topic("RefreshColumnList").Subscribe(this.Refresh);
+            },
+            destroyed: function(){
+                $.Topic("RefreshColumnList").Unsubscribe(this.Refresh);
             },
             methods: {
                 Refresh: function (columns) {
-                    alert(JSON.stringify(columns))
+                    this.Columns = [];
+                    for (var i = 0; i < columns.length; i++) {
+                        this.Columns.push(columns[i]);
+                    }
+                    alert(this.Columns.length)
                 }
             }
         });
