@@ -8,6 +8,7 @@ using Newtonsoft;
 using Newtonsoft.Json;
 using RandImportGenerator.Crosscutting.Utility;
 using System.ComponentModel.DataAnnotations;
+using RandImportGenerator.Core.Utility.CustomAttributes;
 
 namespace RandImportGenerator.Web.Models.Home
 {
@@ -15,8 +16,10 @@ namespace RandImportGenerator.Web.Models.Home
     {
         public IndexViewModel()
         {
-            var type = typeof(ColumnType);
-            ColumnTypes = JsonConvert.SerializeObject(Enum.GetValues(type).Cast<int>().ToDictionary(e => e, e => ((ColumnType)e).GetAttribute<DisplayAttribute>().Name));
+            var columnTypesToInclude = Enum.GetValues(typeof(ColumnType)).Cast<ColumnType>()
+                .Where(x => ((ColumnType)x).GetAttribute<ClientIgnore>() == null).Cast<int>()
+                .ToDictionary(e => e, e => ((ColumnType)e).GetAttribute<DisplayAttribute>().Name);
+            ColumnTypes = JsonConvert.SerializeObject(columnTypesToInclude);
         }
 
         //config

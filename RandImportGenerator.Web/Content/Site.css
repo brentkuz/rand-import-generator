@@ -34,3 +34,4 @@ textarea {
 .no-margin{margin:0 !important;}
 h3{margin:5px 0}
 hr.thin{margin:5px 0}
+textarea.height-100{min-height:100px !important;}

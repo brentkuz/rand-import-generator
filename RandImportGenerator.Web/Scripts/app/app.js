@@ -1,6 +1,6 @@
 ﻿//App
 
-(function ($, util, services, models) {
+(function ($, app, util) {
     var name = "App";
     util.CheckDependencies(name, arguments);
     //pub/sub
@@ -22,4 +22,6 @@
         return topic;
     };
 
-})(jQuery, app.Utility, app.Services, app.Models);
+    app.EventBus = new Vue();
+
+})(jQuery, window.App, window.App.Utility);

@@ -59,6 +59,7 @@
     <Compile Include="Objects\ImportDefinitions\DelimitedImportDefinition.cs" />
     <Compile Include="Objects\ImportDefinitions\ImportDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\CustomAttributes\ClientIgnore.cs" />
     <Compile Include="Utility\Validation\Attributes\CollectionIsNotEmptyAttribute.cs" />
     <Compile Include="Utility\Validation\IValidationHelper.cs" />
     <Compile Include="Utility\Validation\ModelValidationHelper.cs" />

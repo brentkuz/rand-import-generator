@@ -22,7 +22,8 @@ namespace RandImportGenerator.Web
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/vue.js",
-                        "~/Scripts/blockUI.js"));
+                        "~/Scripts/blockUI.js",
+                        "~/Scripts/lodash.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/global.js",
@@ -32,7 +33,9 @@ namespace RandImportGenerator.Web
 
             bundles.Add(new ScriptBundle("~/bundles/home-index").Include(
                         "~/Scripts/app/apps/home/column-list.js",
-                        "~/Scripts/app/apps/home/auto-incremented-column.js",
+                        "~/Scripts/app/apps/home/columns/auto-incremented-column.js",
+                        "~/Scripts/app/apps/home/columns/static-column.js",
+                        "~/Scripts/app/apps/home/columns/randomized-column.js",
                         "~/Scripts/app/apps/home/index.js"));
 
         }

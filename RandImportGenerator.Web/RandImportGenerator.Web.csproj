@@ -203,9 +203,11 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\apps\home\auto-incremented-column.js" />
+    <Content Include="Scripts\app\apps\home\columns\auto-incremented-column.js" />
     <Content Include="Scripts\app\apps\home\column-list.js" />
+    <Content Include="Scripts\app\apps\home\columns\randomized-column.js" />
     <Content Include="Scripts\app\apps\home\index.js" />
+    <Content Include="Scripts\app\apps\home\columns\static-column.js" />
     <Content Include="Scripts\app\global.js" />
     <Content Include="Scripts\app\models.js" />
     <Content Include="Scripts\app\utility.js" />
@@ -223,6 +225,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lodash.core.js" />
+    <Content Include="Scripts\lodash.core.min.js" />
+    <Content Include="Scripts\lodash.js" />
+    <Content Include="Scripts\lodash.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

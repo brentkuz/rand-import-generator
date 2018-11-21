@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RandImportGenerator.Core.Utility.CustomAttributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace RandImportGenerator.Core
 {
@@ -17,6 +18,7 @@ namespace RandImportGenerator.Core
         [Display(Name = "Static")]
         Static = 4,
         [Display(Name = "Computed")]
+        [ClientIgnore]
         Computed = 5
     }
    
