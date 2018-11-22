@@ -57,7 +57,7 @@
                     <div class ="row">
                         <div class ="col-sm-6">
                             <label>Randomization Options <br /> (1 option per line)</label>
-                            <textarea v-model="OptionsTemp" class ="form-control inline height-100" required></textarea>
+                            <textarea v-model="OptionsTemp" class ="form-control inline height-100" placeholder="Option 1 \nOption 2" required></textarea>
                         </div>
                     </div>
                     <div class ="row">

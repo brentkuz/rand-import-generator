@@ -17,5 +17,16 @@ namespace RandImportGenerator.Web.Controllers
                 Constants.ColumnTemplatesViewPath, type.ToString(), Constants.PartialViewEnding, Constants.ViewExtension); 
             return PartialView(viewPath);
         }
+
+        public JsonResult Test()
+        {
+            var dict = new Dictionary<string, string>()
+            {
+                {"1", "One" },
+                {"2", "Two" }
+            };
+
+            return Json(dict, JsonRequestBehavior.AllowGet);
+        }
     }
 }

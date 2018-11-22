@@ -50,7 +50,7 @@
                 app.EventBus.$on("ColumnList_Delete", this.DeleteColumn)
                 app.EventBus.$on("ColumnList_Edit", this.EditColumn)
                 app.EventBus.$on("Editor_Update", this.UpdateColumn)
-                
+                app.EventBus.$on("Editor_ColumnExists", this.ColumnExists);
             },
             methods: {
                 LoadColumnEditor: function (columnToEdit) {
@@ -126,6 +126,10 @@
                         return { Name: item.Name, Type: self.columnTypes[item.Type], Order: item.Order };
                     });
                     app.EventBus.$emit("ColumnList_Refresh", displayColumns);
+                },
+                ColumnExists: function (obj) {
+                    var exists = this.FindColumn(obj.ColumnName) != null;
+                    obj.Callback(exists);
                 }
             }
         });

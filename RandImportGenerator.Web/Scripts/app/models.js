@@ -21,4 +21,9 @@
         ColumnBase.call(this, type, name, order);
         this.RandomizationOptions = options || [];
     };
+    models.DependentColumn = function (type, name, order, map, dependsOn) {
+        ColumnBase.call(this, type, name, order);
+        this.Map = map || {};
+        this.DependsOn = dependsOn || null;
+    };
 })(window.App.Models);

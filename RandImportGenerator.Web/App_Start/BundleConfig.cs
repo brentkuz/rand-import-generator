@@ -36,6 +36,7 @@ namespace RandImportGenerator.Web
                         "~/Scripts/app/apps/home/columns/auto-incremented-column.js",
                         "~/Scripts/app/apps/home/columns/static-column.js",
                         "~/Scripts/app/apps/home/columns/randomized-column.js",
+                        "~/Scripts/app/apps/home/columns/dependent-column.js",
                         "~/Scripts/app/apps/home/index.js"));
 
         }
