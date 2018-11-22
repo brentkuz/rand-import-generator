@@ -64,6 +64,12 @@
     <Compile Include="Utility\Validation\IValidationHelper.cs" />
     <Compile Include="Utility\Validation\ModelValidationHelper.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RandImportGenerator.Crosscutting\RandImportGenerator.Crosscutting.csproj">
+      <Project>{0B10CF6F-4B34-420B-B781-424D9C633C9F}</Project>
+      <Name>RandImportGenerator.Crosscutting</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -46,6 +46,7 @@
                             <input type="text" v-model="Definition.Value" class ="form-control inline" required />
                         </div>
                     </div>
+                    <hr class ="thin"/>
                     <div class ="row">
                         <div class ="col-sm-12">
                             <button type="submit" class ="btn btn-primary">Save</button>

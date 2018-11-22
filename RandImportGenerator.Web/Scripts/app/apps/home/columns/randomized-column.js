@@ -60,6 +60,7 @@
                             <textarea v-model="OptionsTemp" class ="form-control inline height-100" placeholder="Option 1 \nOption 2" required></textarea>
                         </div>
                     </div>
+                    <hr class ="thin"/>
                     <div class ="row">
                         <div class ="col-sm-12">
                             <button type="submit" class ="btn btn-primary">Save</button>

@@ -8,6 +8,20 @@
 <div id="indexApp">
     <div class="app-container radius">
         <h3>Basic Config</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <label></label>
+                <input type="number" class="form-control inline" v-model="Definition.RowCount" required />
+            </div>
+            <div class="col-sm-6">
+                <select v-model="Definition.QuoteType" class="form-control inline" >
+                    <option v-bind:value="null" disabled selected>Select</option>
+                    <option v-for="option in QuoteTypeOptions" v-bind:value="option.Value">
+                        {{option.Text}}
+                    </option>
+                </select>
+            </div>
+        </div>
     </div>
     <div class="app-container radius">
         <div>

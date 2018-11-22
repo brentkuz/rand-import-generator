@@ -7,28 +7,23 @@ using RandImportGenerator.Core.Logic.FileWriters;
 using RandImportGenerator.Core.Objects.ImportDefinitions.Columns;
 using System.ComponentModel.DataAnnotations;
 using RandImportGenerator.Core.Utility.Validation;
+using RandImportGenerator.Crosscutting.Utility;
 
 namespace RandImportGenerator.Core.Logic.Builders
 {
     public class CSVImportBuilder : DelimitedImportBuilder
     {
-        private readonly HashSet<char> quotes = new HashSet<char>()
-        {
-            '\'',
-            '"'
-        };
-
         public CSVImportBuilder(IWriter fileWriter, IValidationHelper validation) : base("csv", fileWriter, validation)
         {
             definition = new CSVImportDefinition();
         }
 
-        public virtual void SetQuoteCharacter(char quoteChar)
+        public virtual void SetQuoteCharacter(QuoteType quote)
         {
-            if (!quotes.Contains(quoteChar))
-                throw new ArgumentException(string.Format("'{0}' is not a valid quote character", quoteChar));
+            char quoteChar = (char)quote;
 
             var csvDef = definition as CSVImportDefinition;
+          
             csvDef.QuoteCharacter = quoteChar;
         }
 

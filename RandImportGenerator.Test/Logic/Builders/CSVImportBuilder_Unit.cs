@@ -11,6 +11,7 @@ using System.Linq;
 using System.Collections.Generic;
 using RandImportGenerator.Core.Utility.Validation;
 using System.ComponentModel.DataAnnotations;
+using RandImportGenerator.Core;
 
 namespace RandImportGenerator.Test.Logic.Builders
 {
@@ -139,20 +140,11 @@ namespace RandImportGenerator.Test.Logic.Builders
         #region SetQuoteCharacter
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void SetQuoteCharacter_InvalidCharacter()
-        {
-            var bldr = GetBasicBuilder();
-
-            bldr.SetQuoteCharacter('?');
-        }
-
-        [TestMethod]
         public void SetQuoteCharacter_Success()
         {
             var bldr = GetBasicBuilder();
 
-            bldr.SetQuoteCharacter('"');
+            bldr.SetQuoteCharacter(QuoteType.None);
 
             Assert.AreEqual('"', (bldr.Definition as CSVImportDefinition).QuoteCharacter);
         }

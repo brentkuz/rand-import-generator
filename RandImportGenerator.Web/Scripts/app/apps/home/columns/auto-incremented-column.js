@@ -50,6 +50,7 @@
                             <input type="number" v-model="Definition.IncrementValue" class ="form-control inline" required min="0"/>
                         </div>
                     </div>
+                    <hr class ="thin"/>
                     <div class ="row">
                         <div class ="col-sm-12">
                             <button type="submit" class ="btn btn-primary">Save</button>

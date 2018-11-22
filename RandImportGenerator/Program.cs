@@ -87,7 +87,7 @@ namespace RandImportGenerator
                 },
             };
             var delimiter = ',';
-            var quote = '"';
+            var quote = QuoteType.Double;
             var rowCount = 20000;
             /******************************************************************/
 
@@ -104,8 +104,8 @@ namespace RandImportGenerator
             if (bldr is DelimitedImportBuilder)
                 (bldr as DelimitedImportBuilder).SetDelimiter(delimiter);
 
-            //if (bldr is CSVImportBuilder)
-            //    (bldr as CSVImportBuilder).SetQuoteCharacter(quote);
+            if (bldr is CSVImportBuilder)
+                (bldr as CSVImportBuilder).SetQuoteCharacter(quote);
 
             bldr.SetRowCount(rowCount);
 

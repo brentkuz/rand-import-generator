@@ -21,5 +21,13 @@ namespace RandImportGenerator.Core
         [ClientIgnore]
         Computed = 5
     }
-   
+    public enum QuoteType
+    {
+        [Display(Name = "None")]
+        None,
+        [Display(Name = "Single")]
+        Single = '\'',
+        [Display(Name = "Double")]
+        Double = '"'
+    }
 }

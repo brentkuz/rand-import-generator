@@ -18,12 +18,19 @@ namespace RandImportGenerator.Web.Models.Home
         {
             var columnTypesToInclude = Enum.GetValues(typeof(ColumnType)).Cast<ColumnType>()
                 .Where(x => ((ColumnType)x).GetAttribute<ClientIgnore>() == null).Cast<int>()
-                .ToDictionary(e => e, e => ((ColumnType)e).GetAttribute<DisplayAttribute>().Name);
+                .ToDictionary(e => e, e => ((ColumnType)e).GetAttribute<DisplayAttribute>()?.Name);
             ColumnTypes = JsonConvert.SerializeObject(columnTypesToInclude);
+
+            var quoteTypesToInclude = Enum.GetValues(typeof(QuoteType)).Cast<QuoteType>()
+                .Where(x => ((QuoteType)x).GetAttribute<ClientIgnore>() == null).Cast<int>()
+                .ToDictionary(e => (char)e, e => ((QuoteType)e).GetAttribute<DisplayAttribute>()?.Name);
+            QuoteTypes = JsonConvert.SerializeObject(quoteTypesToInclude);
         }
 
         //config
         [ClientConfiguration]
         public string ColumnTypes { get; set; }
+        [ClientConfiguration]
+        public string QuoteTypes { get; set; }
     }
 }

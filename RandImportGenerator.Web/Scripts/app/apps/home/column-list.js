@@ -14,6 +14,7 @@
             };
         },
         mounted: function () {
+            //event handlers
             app.EventBus.$on("ColumnList_Refresh", this.Refresh);
         },
         computed:{
@@ -46,12 +47,11 @@
             Edit: function (name) {
                 this.IsEdit = true;
                 blocker.Block();
-                $.Topic("EditColumn").Publish(name);
                 app.EventBus.$emit("ColumnList_Edit", name);
             }
         },
         template: `
-            <div id="columnListApp" class="app-container radius" style="min-height:200px">
+            <div id="columnListApp" class="app-container radius">
             <div class="row table-header">
                 <div class="col-sm-3">
                     <label>Name</label>

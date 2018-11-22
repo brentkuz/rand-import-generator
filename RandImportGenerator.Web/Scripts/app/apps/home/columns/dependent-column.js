@@ -13,9 +13,8 @@
             return {
                 Definition: this.$props.definition || new models.DependentColumn(this.$props.type),
                 IsEdit: this.$props.definition != null,
-                //needs parser for incoming edit definition
-                MapTemp: null,
-                DependsOnTemp: null
+                MapTemp: this.$props.definition != null ? JSON.stringify(this.$props.definition.Map, null, 2) : null,
+                DependsOnTemp: this.$props.definition != null ? this.$props.definition.DependsOn : null
             };
         },
         created: function () {
@@ -37,7 +36,6 @@
                     app.EventBus.$emit("Editor_ColumnExists", {
                         ColumnName: self.DependsOnTemp,
                         Callback: function (exists) {
-                            alert()
                             if (exists) {
                                 self.Definition.DependsOn = self.DependsOnTemp;
                                 el.setCustomValidity("");
@@ -85,13 +83,14 @@
                     <div class ="row">
                         <div class ="col-sm-6">
                             <label>Map <br /> (properly formed JSON)</label>
-                            <textarea v-model="MapTemp" ref="Map" class ="form-control inline height-100" placeholder="{\n'InputValue1': 'OutputValue1'\n'InputValue2': 'OutputValue2'\n}" required></textarea>
+                            <textarea v-model="MapTemp" ref="Map" class ="form-control inline height-100" placeholder='{\n"InputValue1": "OutputValue1"\n"InputValue2": "OutputValue2"\n}' required></textarea>
                         </div>
                         <div class ="col-sm-6">
                             <label>Depends On (column name)</label>
                             <input type="text" ref="DependsOn" v-model="DependsOnTemp" class ="form-control inline" required />
                         </div>
                     </div>
+                    <hr class ="thin"/>
                     <div class ="row">
                         <div class ="col-sm-12">
                             <button type="submit" class ="btn btn-primary">Save</button>
