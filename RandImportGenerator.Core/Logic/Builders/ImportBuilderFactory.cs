@@ -6,12 +6,10 @@ namespace RandImportGenerator.Core.Logic.Builders
 {
     public class ImportBuilderFactory : IImportBuilderFactory
     {
-        private IWriter fileWriter;
         private IValidationHelper validation;
 
-        public ImportBuilderFactory(IWriter fileWriter, IValidationHelper validation)
+        public ImportBuilderFactory(IValidationHelper validation)
         {
-            this.fileWriter = fileWriter;
             this.validation = validation;
         }
         public ImportBuilderBase GetImportBuilder(FileType type)
@@ -19,7 +17,7 @@ namespace RandImportGenerator.Core.Logic.Builders
             switch(type)
             {
                 case FileType.CSV:
-                    return new CSVImportBuilder(fileWriter, validation);
+                    return new CSVImportBuilder(validation);
                 default:
                     throw new ArgumentException("File type is not supported");
             }

@@ -13,7 +13,7 @@ namespace RandImportGenerator.Core.Logic.Builders
 {
     public class CSVImportBuilder : DelimitedImportBuilder
     {
-        public CSVImportBuilder(IWriter fileWriter, IValidationHelper validation) : base("csv", fileWriter, validation)
+        public CSVImportBuilder(IValidationHelper validation) : base("csv", validation)
         {
             definition = new CSVImportDefinition();
         }
@@ -95,8 +95,8 @@ namespace RandImportGenerator.Core.Logic.Builders
                 file.AppendLine(row);
             }
 
-            //write to file
-            fileWriter.Write(outputPath, file.ToString());
+            //write to file            
+            writer.Write(file.ToString());
         }
 
 

@@ -1,18 +1,26 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace RandImportGenerator.Core.Logic.FileWriters
 {
     public class FileWriter : IWriter
     {
-        public bool DirectoryExists(string path)
+        private string outputPath;
+        public string OutputPath
         {
-            var dirPath = Path.GetDirectoryName(path);
-            return Directory.Exists(dirPath);
+            get { return outputPath; }
+            set
+            {
+                var dirPath = Path.GetDirectoryName(value);
+                if(!Directory.Exists(dirPath))
+                    throw new SystemException(string.Format("The path {0} does not exist.", dirPath));
+                outputPath = value;
+            }
         }
 
-        public void Write(string path, string contents)
+        public void Write(string contents)
         {
-            File.WriteAllText(path, contents);
+            File.WriteAllText(OutputPath, contents);
         }
     }
 }

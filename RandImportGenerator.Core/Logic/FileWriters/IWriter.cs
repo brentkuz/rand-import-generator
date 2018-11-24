@@ -2,7 +2,6 @@
 {
     public interface IWriter
     {
-        void Write(string path, string contents);
-        bool DirectoryExists(string path);
+        void Write(string contents);
     }
 }

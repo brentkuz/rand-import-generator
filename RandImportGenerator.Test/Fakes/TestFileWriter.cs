@@ -10,13 +10,9 @@ namespace RandImportGenerator.Test.Fakes
     public class TestFileWriter : IWriter
     {
         public string InMemoryFileContents { get; set; }
+        
 
-        public bool DirectoryExists(string path)
-        {
-            return true;
-        }
-
-        public void Write(string path, string contents)
+        public void Write(string contents)
         {
             InMemoryFileContents = contents;
         }

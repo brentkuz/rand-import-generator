@@ -1,5 +1,6 @@
 ﻿using RandImportGenerator.Core;
 using RandImportGenerator.Core.Logic.Builders;
+using RandImportGenerator.Core.Logic.FileWriters;
 using RandImportGenerator.Core.Objects.ImportDefinitions.Columns;
 using RandImportGenerator.Utility;
 using System;
@@ -65,7 +66,7 @@ namespace RandImportGenerator
 
             /*** File Config *************************************************/
             var fileType = FileType.CSV;
-            var outputPath = @"C:\test\DrugItems.csv";
+            var outputPath = @"C:\test2\DrugItems.csv";
             var columns = new ColumnDefinitionBase[]
             {
                 new AutoIncrementedColumn("DrugUnitID")
@@ -93,8 +94,10 @@ namespace RandImportGenerator
 
 
             var bldr = bldrFactory.GetImportBuilder(fileType);
-
-            bldr.SetOutputPath(outputPath);
+            var writer = new FileWriter();
+            writer.OutputPath = outputPath;
+            bldr.SetWriter(writer);
+            
         
             foreach(var col in columns)
             {

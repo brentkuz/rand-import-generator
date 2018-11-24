@@ -17,9 +17,9 @@ namespace RandImportGenerator.Web.Models.Home
         public IndexViewModel()
         {
             var columnTypesToInclude = Enum.GetValues(typeof(ColumnType)).Cast<ColumnType>()
-                .Where(x => ((ColumnType)x).GetAttribute<ClientIgnore>() == null).Cast<int>()
-                .ToDictionary(e => e, e => ((ColumnType)e).GetAttribute<DisplayAttribute>()?.Name);
-            ColumnTypes = JsonConvert.SerializeObject(columnTypesToInclude);
+                .Where(x => ((ColumnType)x).GetAttribute<ClientIgnore>() == null).Cast<int>();
+            ColumnTypes = JsonConvert.SerializeObject(columnTypesToInclude.ToDictionary(e => e, e => ((ColumnType)e).GetAttribute<DisplayAttribute>()?.Name));
+            ColumnKeyNameMap = JsonConvert.SerializeObject(columnTypesToInclude.ToDictionary(e => e, e => ((ColumnType)e).ToString()));
 
             var quoteTypesToInclude = Enum.GetValues(typeof(QuoteType)).Cast<QuoteType>()
                 .Where(x => ((QuoteType)x).GetAttribute<ClientIgnore>() == null).Cast<int>()
@@ -30,6 +30,8 @@ namespace RandImportGenerator.Web.Models.Home
         //config
         [ClientConfiguration]
         public string ColumnTypes { get; set; }
+        [ClientConfiguration]
+        public string ColumnKeyNameMap { get; set; }
         [ClientConfiguration]
         public string QuoteTypes { get; set; }
     }

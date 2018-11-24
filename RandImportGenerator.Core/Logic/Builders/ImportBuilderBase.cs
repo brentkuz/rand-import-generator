@@ -13,37 +13,22 @@ namespace RandImportGenerator.Core.Logic.Builders
         private Dictionary<string, string[]> randOptions = new Dictionary<string, string[]>();
 
         protected readonly string fileExtension;
-        protected ImportDefinition definition;
-        protected string outputPath;        
+        protected ImportDefinition definition;    
         protected Dictionary<string, int> columnSequence = new Dictionary<string, int>();
-        protected IWriter fileWriter;
+        protected IWriter writer;
         protected IValidationHelper validation;
 
-        public ImportBuilderBase(string fileExtension, IWriter fileWriter, IValidationHelper validation)
+        public ImportBuilderBase(string fileExtension, IValidationHelper validation)
         {
             this.fileExtension = fileExtension;
-            this.fileWriter = fileWriter;
             this.validation = validation;
         }
 
         public ImportDefinition Definition { get { return definition; } }
 
-        public string OutputPath { get { return outputPath; } }
-
-        public virtual void SetOutputPath(string path)
+        public void SetWriter(IWriter writer)
         {
-            if (!fileWriter.DirectoryExists(path))
-                throw new SystemException(string.Format("The path {0} does not exist.", path));
-
-            //check for correct file extension
-            var parts = path.Split('\\');
-            var filename = parts[parts.Length - 1];
-            var filenameParts = filename.Split('.');
-
-            if (filenameParts[filenameParts.Length - 1].ToLower() != fileExtension.ToLower())
-                throw new ArgumentException("Incompatible file extension");
-
-            outputPath = path;
+            this.writer = writer;
         }
 
         public virtual void AddColumn(ColumnDefinitionBase col)
