@@ -1,4 +1,4 @@
-﻿(function ($, Vue, app, util, initializers) {
+﻿(function ($, Vue, app, util, models) {
     var name = "Index";
     util.CheckDependencies(name, arguments);
 
@@ -15,11 +15,7 @@
                 ColumnTypeOptions: [],
                 QuoteTypeOptions: [],
                 ColumnType: null,
-                Definition: {
-                    Columns: [],
-                    RowCount: 1,
-                    QuoteType: null
-                },
+                Definition: new models.CSVDefinition(),
                 CurrentEditor: null,
                 ToEdit: null,
                 EditorType: null,
@@ -192,26 +188,38 @@
                     try{
                         if (this.IsDefinitionValid == true) {
                             var dto = {};
+                            dto.RowCount = this.Definition.RowCount;
+                            dto.QuoteType = this.Definition.QuoteType;
                             for (var key in this.columnKeyNameMap) {
                                 dto[this.columnKeyNameMap[key]] = $.grep(this.Definition.Columns, function (item) {
                                     return item.Type == key;
-                                })
+                                });
                             }
 
-                            $.post(urls.CSVBuilder_CreateFile, dto, function (data) {
-                                
+                            $.post(urls.CSVBuilder_CreateFile, dto, function (resp) {
+                                if (resp.Success === true) {
+                                    //redirect to download
+                                    window.location.href = urls.CSVBuilder_DownloadFile + resp.Data.FileId;
+                                    notification.UI("File successfully created", false);
+                                } else {
+                                    notification.UI(data.Message, true);
+                                }
                             })
                         }
                     } catch (err) {
                         notification.UI("An error occurred.", true);
                         throw err;
                     }
+                },
+                Reset: function () {
+                    this.Definition = new models.CSVDefinition();
+                    app.EventBus.$emit("Reset");
+                    notification.UI("", false);
                 }
-                
             }
         });
        
 
     });
 
-})(jQuery, Vue, window.App, window.App.Utility, window.App.Initializers);
+})(jQuery, Vue, window.App, window.App.Utility, window.App.Models);

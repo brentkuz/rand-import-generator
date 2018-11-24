@@ -16,6 +16,7 @@
         mounted: function () {
             //event handlers
             app.EventBus.$on("ColumnList_Refresh", this.Refresh);
+            app.EventBus.$on("Reset", this.Refresh);
         },
         computed:{
             SortedList: function () {
@@ -24,18 +25,22 @@
         },
         methods: {
             Refresh: function (columns) {
-                function SortPredicate(a, b) {
-                    var aOrder = a.Order;
-                    var bOrder = b.Order;
-                    return (aOrder < bOrder) ? -1 : ((aOrder > bOrder) ? 1 : 0);
-                }
+                if (columns == null) {
+                    this.Columns = [];
+                } else {
+                    function SortPredicate(a, b) {
+                        var aOrder = a.Order;
+                        var bOrder = b.Order;
+                        return (aOrder < bOrder) ? -1 : ((aOrder > bOrder) ? 1 : 0);
+                    }
 
-                this.Columns = [];
-                for (var i = 0; i < columns.length; i++) {
-                    this.Columns.push(columns[i]);
-                }
+                    this.Columns = [];
+                    for (var i = 0; i < columns.length; i++) {
+                        this.Columns.push(columns[i]);
+                    }
 
-                this.Columns = this.Columns.sort(SortPredicate);
+                    this.Columns = this.Columns.sort(SortPredicate);
+                }
                 this.IsEdit = false;
                 blocker.Unblock();
             },

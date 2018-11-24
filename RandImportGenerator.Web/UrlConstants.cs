@@ -11,6 +11,6 @@ namespace RandImportGenerator.Web
 
         //CSVBuilderController
         public string CSVBuilder_CreateFile { get; } = "/CSVBuilder/CreateFile";
-        public string CSVBuilder_DownloadFile { get; } = "/CSVBuilder/DownloadFile";
+        public string CSVBuilder_DownloadFile { get; } = "/CSVBuilder/DownloadFile/";
     }
 }

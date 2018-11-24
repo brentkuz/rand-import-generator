@@ -17,7 +17,7 @@ namespace RandImportGenerator.Web.Utility
 
         private void Register(IUnityContainer container)
         {
-            container.RegisterType<IWriter, HttpResponseWriter>();
+            container.RegisterType<IWriter, TempDataWriter>();
             container.RegisterType<IValidationHelper, ModelValidationHelper>();
             container.RegisterType<IImportBuilderFactory, ImportBuilderFactory>();
 

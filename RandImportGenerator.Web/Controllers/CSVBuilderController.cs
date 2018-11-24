@@ -3,6 +3,7 @@ using RandImportGenerator.Core.Logic.Builders;
 using RandImportGenerator.Core.Logic.FileWriters;
 using RandImportGenerator.Web.Models;
 using RandImportGenerator.Web.Models.CSVBuilder;
+using RandImportGenerator.Web.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,15 @@ namespace RandImportGenerator.Web.Controllers
     public class CSVBuilderController : Controller
     {
         private CSVImportBuilder builder;
+        private TempDataWrapper tempDataWrapper;
         public CSVBuilderController(IImportBuilderFactory builderFactory, IWriter writer)
         {
             builder = (CSVImportBuilder)builderFactory.GetImportBuilder(FileType.CSV);
+            if (writer is TempDataWriter)
+            {
+                tempDataWrapper = new TempDataWrapper(TempData);
+                ((TempDataWriter)writer).TempDataWrapper = tempDataWrapper;
+            }
             builder.SetWriter(writer);
         }
         [HttpPost]
@@ -34,10 +41,10 @@ namespace RandImportGenerator.Web.Controllers
                 builder.AddColumns(dto.Randomized);
                 builder.AddColumns(dto.Dependent);
                 builder.AddColumns(dto.Static);
-
+                
                 builder.BuildAndSaveFile();
 
-                return Json(new ApiResponse(true, ""));
+                return Json(new ApiResponse(true, "") { Data = new { FileId = tempDataWrapper.Handle } });
             }
             catch(Exception ex)
             {                
@@ -46,8 +53,9 @@ namespace RandImportGenerator.Web.Controllers
         }
 
         public FileResult DownloadFile(Guid id)
-        {
-            return null;
+        {         
+            byte[] fileBytes = TempData[id.ToString()] as byte[];
+            return File(fileBytes, "text/csv", id + ".csv"); 
         }
     }
 }

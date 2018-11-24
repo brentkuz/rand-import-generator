@@ -197,12 +197,13 @@
     <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Models\CSVBuilder\CSVImportDefinitionDTO.cs" />
     <Compile Include="Models\Home\IndexViewModel.cs" />
+    <Compile Include="Models\TempDataWrapper.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlConstants.cs" />
     <Compile Include="Utility\CustomAttributes\ClientConfigurationAttribute.cs" />
     <Compile Include="Utility\HtmlHelpers.cs" />
-    <Compile Include="Utility\HttpResponseWriter.cs" />
+    <Compile Include="Utility\TempDataWriter.cs" />
     <Compile Include="Utility\UnityContainerFactory.cs" />
   </ItemGroup>
   <ItemGroup>

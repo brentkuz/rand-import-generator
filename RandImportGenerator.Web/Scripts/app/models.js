@@ -1,5 +1,11 @@
 ﻿
 (function (models) {
+    models.CSVDefinition = function () {
+        this.Columns = [],
+        this.RowCount = 1;
+        this.QuoteType = null
+    }
+
     function ColumnBase(type, name, order) {
         this.Type = type;
         this.Name = name;
