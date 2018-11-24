@@ -6,12 +6,17 @@
     ViewBag.Title = "Home Page";
 }
 <div id="indexApp">
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button class="btn btn-primary" v-on:click="CreateFile" v-bind:disabled="IsDefinitionValid == false">Create File</button>
+        </div>
+    </div>
     <div class="app-container radius">
         <h3>Basic Config</h3>
         <div class="row">
             <div class="col-sm-6">
                 <label></label>
-                <input type="number" class="form-control inline" v-model="Definition.RowCount" required />
+                <input type="number" class="form-control inline" v-model="Definition.RowCount" required min="1"/>
             </div>
             <div class="col-sm-6">
                 <select v-model="Definition.QuoteType" class="form-control inline" >

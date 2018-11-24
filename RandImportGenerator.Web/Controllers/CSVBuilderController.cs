@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,23 +12,15 @@ namespace RandImportGenerator.Web.Controllers
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class CSVBuilderController : Controller
     {
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public PartialViewResult GetColumnTemplate(ColumnType type)
+        [HttpPost]
+        public HttpResponseMessage CreateFile()
         {
-            var viewPath = string.Format("{0}{1}{2}.{3}", 
-                Constants.ColumnTemplatesViewPath, type.ToString(), Constants.PartialViewEnding, Constants.ViewExtension); 
-            return PartialView(viewPath);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-        public JsonResult Test()
+        public FileResult DownloadFile(Guid id)
         {
-            var dict = new Dictionary<string, string>()
-            {
-                {"1", "One" },
-                {"2", "Two" }
-            };
-
-            return Json(dict, JsonRequestBehavior.AllowGet);
+            return null;
         }
     }
 }

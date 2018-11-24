@@ -17,7 +17,7 @@
                 ColumnType: null,
                 Definition: {
                     Columns: [],
-                    RowCount: 0,
+                    RowCount: 1,
                     QuoteType: null
                 },
                 CurrentEditor: null,
@@ -47,6 +47,8 @@
                 }
 
                 this.ColumnTypeOptions = colOptions;
+
+                this.columnKeyNameMap = JSON.parse(config.ColumnKeyNameMap);
 
                 var quoteTypes = JSON.parse(config.QuoteTypes);
                 var quoteOptions = [];
@@ -78,6 +80,11 @@
                 app.EventBus.$on("ColumnList_Edit", this.EditColumn)
                 app.EventBus.$on("Editor_Update", this.UpdateColumn)
                 app.EventBus.$on("Editor_ColumnExists", this.ColumnExists);
+            },
+            computed:{
+                IsDefinitionValid: function () {
+                    return this.Definition.Columns.length > 0;
+                }
             },
             methods: {
                 LoadColumnEditor: function (columnToEdit) {
@@ -180,7 +187,27 @@
                 ColumnExists: function (obj) {
                     var exists = this.FindColumn(obj.ColumnName) != null;
                     obj.Callback(exists);
+                },
+                CreateFile: function () {
+                    try{
+                        if (this.IsDefinitionValid == true) {
+                            var dto = {};
+                            for (var key in this.columnKeyNameMap) {
+                                dto[this.columnKeyNameMap[key]] = $.grep(this.Definition.Columns, function (item) {
+                                    return item.Type == key;
+                                })
+                            }
+
+                            $.post(urls.CSVBuilder_CreateFile, null, function (data, success) {
+                                alert(success)
+                            })
+                        }
+                    } catch (err) {
+                        notification.UI("An error occurred.", true);
+                        throw err;
+                    }
                 }
+                
             }
         });
        
