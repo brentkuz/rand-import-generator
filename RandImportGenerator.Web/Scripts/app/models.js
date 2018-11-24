@@ -3,7 +3,7 @@
     function ColumnBase(type, name, order) {
         this.Type = type;
         this.Name = name;
-        this.Order = order;
+        this.ColumnOrder = order;
     }
 
     models.AutoIncrementedColumn = function (type, name, order, startingSequenceNumber, incrementValue) {

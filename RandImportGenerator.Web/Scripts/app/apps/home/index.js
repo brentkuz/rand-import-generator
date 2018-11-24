@@ -180,7 +180,7 @@
                 RefreshList: function () {
                     var self = this;
                     var displayColumns = $.map(this.Definition.Columns, function (item) {
-                        return { Name: item.Name, Type: self.columnTypes[item.Type], Order: item.Order };
+                        return { Name: item.Name, Type: self.columnTypes[item.Type], ColumnOrder: item.ColumnOrder };
                     });
                     app.EventBus.$emit("ColumnList_Refresh", displayColumns);
                 },
@@ -198,8 +198,8 @@
                                 })
                             }
 
-                            $.post(urls.CSVBuilder_CreateFile, null, function (data, success) {
-                                alert(success)
+                            $.post(urls.CSVBuilder_CreateFile, dto, function (data) {
+                                
                             })
                         }
                     } catch (err) {

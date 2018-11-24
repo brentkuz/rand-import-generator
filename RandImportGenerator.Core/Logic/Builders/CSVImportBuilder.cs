@@ -29,6 +29,8 @@ namespace RandImportGenerator.Core.Logic.Builders
 
         public override void BuildAndSaveFile()
         {
+            base.BuildAndSaveFile();
+
             var csvDef = definition as CSVImportDefinition;
 
             var results = new List<ValidationResult>() as ICollection<ValidationResult>;

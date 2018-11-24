@@ -74,7 +74,7 @@
                     {{col.Type}}
                 </div>
                 <div class="col-sm-3">
-                    {{col.Order}}
+                    {{col.ColumnOrder}}
                 </div>
                 <div class="col-sm-3">
                     <button class="btn btn-default" v-on:click="Edit(col.Name)" v-bind:disabled="IsEdit == true">Edit</button>

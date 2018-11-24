@@ -76,7 +76,7 @@
                         </div>
                         <div class ="col-sm-6">
                             <label>Order</label>
-                            <input type="number" v-model="Definition.Order" class ="form-control inline" required min="0" />
+                            <input type="number" v-model="Definition.ColumnOrder" class ="form-control inline" required min="0" />
                         </div>
                     </div>
                     <hr class ="thin"/>

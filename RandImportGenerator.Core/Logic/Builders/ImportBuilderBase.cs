@@ -47,6 +47,16 @@ namespace RandImportGenerator.Core.Logic.Builders
 
             definition.Columns.Add(col);
         }
+        public virtual void AddColumns(IEnumerable<ColumnDefinitionBase> columns)
+        {
+            if (columns != null)
+            {
+                foreach (var col in columns)
+                {
+                    AddColumn(col);
+                }
+            }
+        }
 
         public virtual void SetRowCount(int count)
         {
@@ -70,7 +80,11 @@ namespace RandImportGenerator.Core.Logic.Builders
             return definition.Columns.Any(x => x.Name == colName);
         }
 
-        public abstract void BuildAndSaveFile();
+        public virtual void BuildAndSaveFile()
+        {
+            if (writer == null)
+                throw new NullReferenceException("The writer has not been set.");
+        }
 
         protected virtual string CalculateIncremented(AutoIncrementedColumn col, Dictionary<string, object> cache)
         {

@@ -10,7 +10,7 @@ namespace RandImportGenerator.Web.Utility
     {
         public void Write(string contents)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RandImportGenerator.Web.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,11 @@ namespace RandImportGenerator.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+            //Unity
+            var container = new UnityContainerFactory().GetContainer();
+            DependencyResolver.SetResolver(new Unity.AspNet.Mvc.UnityDependencyResolver(container));
         }
     }
 }

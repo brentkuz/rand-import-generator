@@ -63,6 +63,7 @@ namespace RandImportGenerator
             //init
             var container = new UnityContainerFactory().GetContainer();
             var bldrFactory = container.Resolve<IImportBuilderFactory>();
+            var writer = container.Resolve<IWriter>();
 
             /*** File Config *************************************************/
             var fileType = FileType.CSV;
@@ -94,8 +95,8 @@ namespace RandImportGenerator
 
 
             var bldr = bldrFactory.GetImportBuilder(fileType);
-            var writer = new FileWriter();
-            writer.OutputPath = outputPath;
+            if(writer is FileWriter)
+                ((FileWriter)writer).OutputPath = outputPath;
             bldr.SetWriter(writer);
             
         
