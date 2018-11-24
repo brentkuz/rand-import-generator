@@ -29,8 +29,8 @@
                     this.Columns = [];
                 } else {
                     function SortPredicate(a, b) {
-                        var aOrder = a.Order;
-                        var bOrder = b.Order;
+                        var aOrder = a.ColumnOrder;
+                        var bOrder = b.ColumnOrder;
                         return (aOrder < bOrder) ? -1 : ((aOrder > bOrder) ? 1 : 0);
                     }
 
