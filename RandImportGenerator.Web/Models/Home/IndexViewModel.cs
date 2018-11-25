@@ -23,7 +23,7 @@ namespace RandImportGenerator.Web.Models.Home
 
             var quoteTypesToInclude = Enum.GetValues(typeof(QuoteType)).Cast<QuoteType>()
                 .Where(x => ((QuoteType)x).GetAttribute<ClientIgnore>() == null).Cast<int>()
-                .ToDictionary(e => (char)e, e => ((QuoteType)e).GetAttribute<DisplayAttribute>()?.Name);
+                .ToDictionary(e => e, e => ((QuoteType)e).GetAttribute<DisplayAttribute>()?.Name);
             QuoteTypes = JsonConvert.SerializeObject(quoteTypesToInclude);
         }
 

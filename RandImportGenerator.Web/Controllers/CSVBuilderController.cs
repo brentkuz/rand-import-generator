@@ -53,7 +53,7 @@ namespace RandImportGenerator.Web.Controllers
         }
 
         public FileResult DownloadFile(Guid id)
-        {         
+        {
             byte[] fileBytes = TempData[id.ToString()] as byte[];
             return File(fileBytes, "text/csv", id + ".csv"); 
         }

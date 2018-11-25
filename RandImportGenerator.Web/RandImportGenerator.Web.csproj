@@ -222,6 +222,7 @@
     <Content Include="Scripts\app\apps\home\columns\randomized-column.js" />
     <Content Include="Scripts\app\apps\home\index.js" />
     <Content Include="Scripts\app\apps\home\columns\static-column.js" />
+    <Content Include="Scripts\app\ui-components.js" />
     <Content Include="Scripts\app\global.js" />
     <Content Include="Scripts\app\models.js" />
     <Content Include="Scripts\app\utility.js" />
@@ -271,7 +272,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\app\services\" />
     <Folder Include="Views\CSVBuilder\" />
   </ItemGroup>
   <ItemGroup>

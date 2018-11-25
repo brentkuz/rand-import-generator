@@ -18,11 +18,6 @@
             app.EventBus.$on("ColumnList_Refresh", this.Refresh);
             app.EventBus.$on("Reset", this.Refresh);
         },
-        computed:{
-            SortedList: function () {
-
-            }
-        },
         methods: {
             Refresh: function (columns) {
                 if (columns == null) {

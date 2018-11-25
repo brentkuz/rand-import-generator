@@ -1,4 +1,5 @@
 ﻿using RandImportGenerator.Core.Utility.CustomAttributes;
+using RandImportGenerator.Crosscutting.Utility;
 using System.ComponentModel.DataAnnotations;
 
 namespace RandImportGenerator.Core
@@ -24,10 +25,19 @@ namespace RandImportGenerator.Core
     public enum QuoteType
     {
         [Display(Name = "None")]
-        None,
-        [Display(Name = "Single")]
-        Single = '\'',
+        [AlternateValue(null)]
+        None = 1,
         [Display(Name = "Double")]
-        Double = '"'
+        [AlternateValue('"')]
+        Double = 2
+    }
+
+    public static class EnumExtensions
+    {
+        public static char ToChar(this QuoteType type)
+        {
+            var value = type.GetAttribute<AlternateValueAttribute>().Value;
+            return (char)(value != null ? value : default(char));
+        }
     }
 }

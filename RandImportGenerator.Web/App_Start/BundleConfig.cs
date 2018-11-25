@@ -29,6 +29,7 @@ namespace RandImportGenerator.Web
                         "~/Scripts/app/global.js",
                         "~/Scripts/app/models.js",
                         "~/Scripts/app/utility.js",
+                        "~/Scripts/app/ui-components.js",
                         "~/Scripts/app/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/home-index").Include(

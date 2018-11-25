@@ -53,6 +53,7 @@
                 }
 
                 this.QuoteTypeOptions = quoteOptions;
+                this.Definition.QuoteType = quoteOptions[0].Value;
 
                 //custom validation delegates
                 this.Validators = {
@@ -202,7 +203,7 @@
                                     window.location.href = urls.CSVBuilder_DownloadFile + resp.Data.FileId;
                                     notification.UI("File successfully created", false);
                                 } else {
-                                    notification.UI(data.Message, true);
+                                    notification.UI(resp.Message, true);
                                 }
                             })
                         }
@@ -213,6 +214,8 @@
                 },
                 Reset: function () {
                     this.Definition = new models.CSVDefinition();
+                    this.LoadColumnEditor();
+                    this.Definition.QuoteType = this.QuoteTypeOptions[0].Value;
                     app.EventBus.$emit("Reset");
                     notification.UI("", false);
                 }

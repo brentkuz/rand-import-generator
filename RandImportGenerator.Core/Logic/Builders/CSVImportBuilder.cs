@@ -20,7 +20,7 @@ namespace RandImportGenerator.Core.Logic.Builders
 
         public virtual void SetQuoteCharacter(QuoteType quote)
         {
-            char quoteChar = (char)quote;
+            char quoteChar = quote.ToChar();
 
             var csvDef = definition as CSVImportDefinition;
           

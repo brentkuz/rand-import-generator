@@ -72,28 +72,28 @@
                     <div class ="row">
                         <div class ="col-sm-6">
                             <label>Name</label>
-                            <input type="text" v-model="Definition.Name" v-bind:disabled="IsEdit == true" class ="form-control inline" required />
+                            <input type="text" v-model="Definition.Name" v-bind:disabled="IsEdit == true" class ="form-control" required />
                         </div>
                         <div class ="col-sm-6">
-                            <label>Order</label>
-                            <input type="number" v-model="Definition.ColumnOrder" class ="form-control inline" required min="0" />
+                            <label>Column Order</label>
+                            <input type="number" v-model="Definition.ColumnOrder" class ="form-control" required min="0" />
                         </div>
                     </div>
                     <hr class ="thin"/>
                     <div class ="row">
                         <div class ="col-sm-6">
-                            <label>Map <br /> (properly formed JSON)</label>
-                            <textarea v-model="MapTemp" ref="Map" class ="form-control inline height-100" placeholder='{\n"InputValue1": "OutputValue1"\n"InputValue2": "OutputValue2"\n}' required></textarea>
+                            <label>Depends On (other column name) </label>
+                            <input type="text" ref="DependsOn" v-model="DependsOnTemp" class ="form-control" required />
                         </div>
                         <div class ="col-sm-6">
-                            <label>Depends On (column name)</label>
-                            <input type="text" ref="DependsOn" v-model="DependsOnTemp" class ="form-control inline" required />
+                            <label>Map (properly formed JSON)</label>
+                            <textarea v-model="MapTemp" ref="Map" class ="form-control height-100" placeholder='{\n"InputValue1": "OutputValue1"\n"InputValue2": "OutputValue2"\n}' required></textarea>
                         </div>
                     </div>
                     <hr class ="thin"/>
                     <div class ="row">
                         <div class ="col-sm-12">
-                            <button type="submit" class ="btn btn-primary">Save</button>
+                            <submit-button v-bind:isEdit="IsEdit" />
                         </div>
                     </div>
                 </form>

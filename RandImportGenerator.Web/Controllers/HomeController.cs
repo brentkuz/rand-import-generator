@@ -15,7 +15,10 @@ namespace RandImportGenerator.Web.Controllers
         {
             return View(new IndexViewModel());
         }
-
+        public ActionResult Error()
+        {
+            return View("~/Views/Shared/Error.cshtml");
+        }
     }
 
 }
