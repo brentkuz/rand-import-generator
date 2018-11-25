@@ -10,7 +10,6 @@ namespace RandImportGenerator.Web.Models.CSVBuilder
     public class CSVImportDefinitionDTO
     {
         public int RowCount { get; set; }
-        public QuoteType QuoteType { get; set; }
         public AutoIncrementedColumn[] AutoIncremented { get; set; }
         public DependentColumn[] Dependent { get; set; }
         public RandomizedColumn[] Randomized { get; set; }

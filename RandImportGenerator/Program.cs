@@ -87,6 +87,12 @@ namespace RandImportGenerator
                     ColumnOrder = 3,
                     RandomizationOptions = new string[] {"A", "B", "C"}
                 },
+                new DependentColumn("Dependent2")
+                {
+                    ColumnOrder = 3,
+                    DependsOn = "DrugCode",
+                    Calculator = (object val) => val.ToString().ToLower()
+                },
             };
             var delimiter = ',';
             var quote = QuoteType.Double;
@@ -138,7 +144,7 @@ namespace RandImportGenerator
         {
             return dep1Map[val.ToString()];
         }
- 
+        
         /************************************************************************************/
     }
 }

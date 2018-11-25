@@ -45,16 +45,7 @@
                 this.ColumnTypeOptions = colOptions;
 
                 this.columnKeyNameMap = JSON.parse(config.ColumnKeyNameMap);
-
-                var quoteTypes = JSON.parse(config.QuoteTypes);
-                var quoteOptions = [];
-                for (var key in quoteTypes) {
-                    quoteOptions.push({ Value: key, Text: quoteTypes[key] });
-                }
-
-                this.QuoteTypeOptions = quoteOptions;
-                this.Definition.QuoteType = quoteOptions[0].Value;
-
+            
                 //custom validation delegates
                 this.Validators = {
                     DeleteColumn: {
@@ -190,7 +181,6 @@
                         if (this.IsDefinitionValid == true) {
                             var dto = {};
                             dto.RowCount = this.Definition.RowCount;
-                            dto.QuoteType = this.Definition.QuoteType;
                             for (var key in this.columnKeyNameMap) {
                                 dto[this.columnKeyNameMap[key]] = $.grep(this.Definition.Columns, function (item) {
                                     return item.Type == key;
@@ -215,7 +205,6 @@
                 Reset: function () {
                     this.Definition = new models.CSVDefinition();
                     this.LoadColumnEditor();
-                    this.Definition.QuoteType = this.QuoteTypeOptions[0].Value;
                     app.EventBus.$emit("Reset");
                     notification.UI("", false);
                 }

@@ -21,10 +21,6 @@ namespace RandImportGenerator.Web.Models.Home
             ColumnTypes = JsonConvert.SerializeObject(columnTypesToInclude.ToDictionary(e => e, e => ((ColumnType)e).GetAttribute<DisplayAttribute>()?.Name));
             ColumnKeyNameMap = JsonConvert.SerializeObject(columnTypesToInclude.ToDictionary(e => e, e => ((ColumnType)e).ToString()));
 
-            var quoteTypesToInclude = Enum.GetValues(typeof(QuoteType)).Cast<QuoteType>()
-                .Where(x => ((QuoteType)x).GetAttribute<ClientIgnore>() == null).Cast<int>()
-                .ToDictionary(e => e, e => ((QuoteType)e).GetAttribute<DisplayAttribute>()?.Name);
-            QuoteTypes = JsonConvert.SerializeObject(quoteTypesToInclude);
         }
 
         //config
@@ -32,7 +28,5 @@ namespace RandImportGenerator.Web.Models.Home
         public string ColumnTypes { get; set; }
         [ClientConfiguration]
         public string ColumnKeyNameMap { get; set; }
-        [ClientConfiguration]
-        public string QuoteTypes { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace RandImportGenerator.Web.Controllers
             {
                 builder.SetRowCount(dto.RowCount);
                 builder.SetDelimiter(',');
-                builder.SetQuoteCharacter(dto.QuoteType);
+                builder.SetQuoteCharacter(QuoteType.Double);
                 builder.AddColumns(dto.AutoIncremented);
                 builder.AddColumns(dto.Randomized);
                 builder.AddColumns(dto.Dependent);

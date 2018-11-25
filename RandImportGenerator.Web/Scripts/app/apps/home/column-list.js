@@ -52,35 +52,38 @@
         },
         template: `
             <div id="columnListApp" class="app-container radius">
-            <div class="row table-header">
-                <div class="col-sm-3">
-                    <label>Name</label>
+                <div class="row table-header">
+                    <div class="col-sm-3">
+                        <label>Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Type</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Order</label>
+                    </div>
+                    <div class="col-sm-3">
+                       Count: {{Columns.length}}
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <label>Type</label>
+                <div v-for="col in Columns">
+                    <div class="row"  >
+                        <div class="col-sm-3">
+                            {{col.Name}}
+                        </div>
+                        <div class="col-sm-3">
+                            {{col.Type}}
+                        </div>
+                        <div class="col-sm-3">
+                            {{col.ColumnOrder}}
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="btn btn-default" v-on:click="Edit(col.Name)" v-bind:disabled="IsEdit == true">Edit</button>
+                            <button class="btn btn-danger" v-on:click="Delete(col.Name)" v-bind:disabled="IsEdit == true">Delete</button>
+                        </div>
+                    </div>
+                    <hr class="thin" />
                 </div>
-                <div class="col-sm-3">
-                    <label>Order</label>
-                </div>
-                <div class="col-sm-3">
-                   Count: {{Columns.length}}
-                </div>
-            </div>
-            <div class="row" v-for="col in Columns" >
-                <div class="col-sm-3">
-                    {{col.Name}}
-                </div>
-                <div class="col-sm-3">
-                    {{col.Type}}
-                </div>
-                <div class="col-sm-3">
-                    {{col.ColumnOrder}}
-                </div>
-                <div class="col-sm-3">
-                    <button class="btn btn-default" v-on:click="Edit(col.Name)" v-bind:disabled="IsEdit == true">Edit</button>
-                    <button class="btn btn-danger" v-on:click="Delete(col.Name)" v-bind:disabled="IsEdit == true">Delete</button>
-                </div>
-            </div>
         </div>`
     });
 

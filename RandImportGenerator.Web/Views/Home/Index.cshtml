@@ -15,17 +15,9 @@
     <div class="app-container radius">
         <h3>Basic Config</h3>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <label>Row Count</label>
                 <input type="number" class="form-control" v-model="Definition.RowCount" required min="1"/>
-            </div>
-            <div class="col-sm-6">
-                <label>Quote Type(for delimiter escape)</label>
-                <select v-model="Definition.QuoteType" class="form-control" >
-                    <option v-for="option in QuoteTypeOptions" v-bind:value="option.Value">
-                        {{option.Text}}
-                    </option>
-                </select>
             </div>
         </div>
     </div>
