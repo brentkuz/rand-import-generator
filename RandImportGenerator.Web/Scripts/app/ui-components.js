@@ -5,11 +5,6 @@
         props: [
             "isEdit"
         ],
-        mounted: function () {
-            //this.SelectText = function (isEdit) {
-            //    return isEdit === true ? "Update" : "Add"
-            //}
-        },
         data: function () {
             return {
                 ButtonText: null
@@ -23,7 +18,7 @@
                 }
             }
         },
-        methods:{
+        methods: {
             SelectText: function (isEdit) {
                 return isEdit === true ? "Update" : "Add"
             }
@@ -31,6 +26,6 @@
         template: `
             <button type="submit" class ="btn btn-primary">{{ButtonText}}</button>
             `
-    })
+    });
 
 })(jQuery, Vue)

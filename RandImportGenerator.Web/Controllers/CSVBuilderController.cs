@@ -19,6 +19,7 @@ namespace RandImportGenerator.Web.Controllers
     {
         private CSVImportBuilder builder;
         private TempDataWrapper tempDataWrapper;
+
         public CSVBuilderController(IImportBuilderFactory builderFactory, IWriter writer)
         {
             builder = (CSVImportBuilder)builderFactory.GetImportBuilder(FileType.CSV);
@@ -29,6 +30,7 @@ namespace RandImportGenerator.Web.Controllers
             }
             builder.SetWriter(writer);
         }
+
         [HttpPost]
         public JsonResult CreateFile(CSVImportDefinitionDTO dto)
         {
@@ -55,7 +57,7 @@ namespace RandImportGenerator.Web.Controllers
         public FileResult DownloadFile(Guid id)
         {
             byte[] fileBytes = TempData[id.ToString()] as byte[];
-            return File(fileBytes, "text/csv", id + ".csv"); 
+            return File(fileBytes, Constants.CSVMimeType, id + Constants.CSVExtenstion); 
         }
     }
 }
