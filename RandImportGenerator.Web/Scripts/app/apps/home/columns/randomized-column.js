@@ -19,7 +19,7 @@
         created: function(){
             this.DebouncedGetOptionsTemp = _.debounce(function () {
                 if (this.OptionsTemp != "") {
-                    var options = this.OptionsTemp.split(/\s+/);
+                    var options = this.OptionsTemp.trim().split(/\s+/);
                     this.Definition.RandomizationOptions = options;
                 }
             }, 500);
